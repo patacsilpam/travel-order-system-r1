@@ -4,7 +4,15 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
-
+import {
+    CircleGauge,
+    FilePen,
+    Compass,
+    Users,
+    User,
+    Settings,
+    Building2,
+} from "lucide-react";
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -146,43 +154,64 @@ export default function Authenticated({ user, header, children }) {
                             href={route("dashboard")}
                             active={route().current("dashboard")}
                         >
-                            Dashboard
+                            <span className="flex flex-row items-center gap-2">
+                                <CircleGauge />
+                                Dashboard
+                            </span>
                         </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             active={route().current("users")}
                         >
-                            Travel Request
+                            <span className="flex flex-row items-center gap-2">
+                                <FilePen />
+                                Travel Request
+                            </span>
                         </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             active={route().current("travel-order")}
                         >
-                            Travel Order
+                            <span className="flex flex-row items-center gap-2">
+                                <Compass />
+                                Travel Order
+                            </span>
                         </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             active={route().current("employees")}
                         >
-                            Employees
+                            <span className="flex flex-row items-center gap-2">
+                                <Users />
+                                Employees
+                            </span>
                         </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             active={route().current("divisions")}
                         >
-                            Divisions
+                            <span className="flex flex-row items-center gap-2">
+                                <Building2 />
+                                Divisions
+                            </span>
                         </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             active={route().current("users")}
                         >
-                            Users
+                            <span className="flex flex-row items-center gap-2">
+                                <User />
+                                Users
+                            </span>
                         </NavLink>
                         <NavLink
                             href={route("dashboard")}
                             active={route().current("users")}
                         >
-                            Settings
+                            <span className="flex flex-row items-center gap-2">
+                                <Settings />
+                                Settings
+                            </span>
                         </NavLink>
                     </ul>
                 </div>
