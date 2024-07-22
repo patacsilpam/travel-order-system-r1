@@ -152,7 +152,7 @@ export default function Authenticated({ user, header, children }) {
                     <ul className="flex flex-col space-y-3 mt-[110px]">
                         <NavLink
                             href={route("dashboard")}
-                            active={route().current("dashboard")}
+                            active={route().current("")}
                         >
                             <span className="flex flex-row items-center gap-2">
                                 <CircleGauge />
@@ -216,50 +216,53 @@ export default function Authenticated({ user, header, children }) {
                     </ul>
                 </div>
             </div>
-            <div className="p-2">
-                <nav className="bg-white  border-gray-200 dark:border-gray-700 w-full">
-                    <div className="-me-2 flex items-center ">
-                        <button
-                            onClick={() =>
-                                setShowingNavigationDropdown(
-                                    (previousState) => !previousState
-                                )
-                            }
-                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+            <div className="w-screen ">
+                <div className="flex flex-row items-center justify-between p-2">
+                    <button
+                        onClick={() =>
+                            setShowingNavigationDropdown(
+                                (previousState) => !previousState
+                            )
+                        }
+                        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+                    >
+                        <svg
+                            className="h-6 w-6"
+                            stroke="currentColor"
+                            fill="none"
+                            viewBox="0 0 24 24"
                         >
-                            <svg
-                                className="h-6 w-6"
-                                stroke="currentColor"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    className={
-                                        !showingNavigationDropdown
-                                            ? "inline-flex"
-                                            : "hidden"
-                                    }
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                                <path
-                                    className={
-                                        showingNavigationDropdown
-                                            ? "inline-flex"
-                                            : "hidden"
-                                    }
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </nav>
-                <main className="bg-gray-200">{children}</main>
+                            <path
+                                className={
+                                    !showingNavigationDropdown
+                                        ? "inline-flex"
+                                        : "hidden"
+                                }
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                            <path
+                                className={
+                                    showingNavigationDropdown
+                                        ? "inline-flex"
+                                        : "hidden"
+                                }
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                    <div>{user.name}</div>
+                </div>
+                <div>dfgdk</div>
+                <main className="bg-gray-200">
+                    {children}
+                    <p>children</p>
+                </main>
             </div>
         </div>
     );
