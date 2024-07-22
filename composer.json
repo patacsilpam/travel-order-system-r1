@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Employee Travel Order System for National Commission on Indigenous Peoples Region I",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
