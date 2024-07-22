@@ -217,7 +217,7 @@ export default function Authenticated({ user, header, children }) {
                 </div>
             </div>
             <div className="w-screen ">
-                <div className="flex flex-row items-center justify-between p-2">
+                <div className="flex flex-row items-center justify-between p-5 border border-b-gray-300 shadow-sm">
                     <button
                         onClick={() =>
                             setShowingNavigationDropdown(
