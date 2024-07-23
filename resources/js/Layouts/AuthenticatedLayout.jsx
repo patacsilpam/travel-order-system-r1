@@ -143,12 +143,13 @@ export default function Authenticated({ user, header, children }) {
                         {navItems.map((item, key) => (
                             <NavLink
                                 key={key}
-                                className="gap-2"
                                 href={item.link}
                                 active={route().current(item.link)}
                             >
-                                {<item.icon />}
-                                {item.name}
+                                <span className="flex gap-2">
+                                    {<item.icon />}
+                                    {item.name}
+                                </span>
                             </NavLink>
                         ))}
                     </ul>
