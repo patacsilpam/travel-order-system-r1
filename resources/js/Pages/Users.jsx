@@ -1,6 +1,6 @@
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import CreateUser from "@/Pages/User/Create";
+import CreateUser from "@/Pages/User/Partials/Create";
 const Users = ({ auth }) => {
     return (
         <div>
