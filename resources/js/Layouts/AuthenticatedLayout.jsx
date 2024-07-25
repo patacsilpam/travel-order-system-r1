@@ -124,7 +124,7 @@ export default function Authenticated({ user, header, children }) {
                 </div>
         </div>
         */
-        <div className="flex flex-row h-screen">
+        <div className="flex flex-row h-screen bg-slate-100">
             <div
                 className={
                     (showingNavigationDropdown ? "hidden" : "block") +
@@ -196,7 +196,7 @@ export default function Authenticated({ user, header, children }) {
                         </svg>
                     </button>
                     <div>
-                        <div className=" sm:items-center sm:ms-6">
+                        <div className="sm:items-center sm:ms-6">
                             <div className="ms-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -242,7 +242,7 @@ export default function Authenticated({ user, header, children }) {
                         </div>
                     </div>
                 </div>
-                <main className="bg-gray-200">{children}</main>
+                <main>{children}</main>
             </div>
         </div>
     );
