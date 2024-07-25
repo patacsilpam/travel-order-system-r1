@@ -1,6 +1,6 @@
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import CreateUser from "@/Pages/User/Partials/Create";
+import PrimaryButton from "@/Components/PrimaryButton";
 const Users = ({ auth }) => {
     return (
         <div>
@@ -11,7 +11,11 @@ const Users = ({ auth }) => {
                 }
             >
                 <Head title="Users" />
-                <CreateUser />
+                <div className="bg-white">
+                    <div className="text-right mx-9 my-5">
+                        <Link href={route("user.create")}>Add User</Link>
+                    </div>
+                </div>
             </AuthenticatedLayout>
         </div>
     );
