@@ -37,4 +37,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/users', function () {
     return Inertia::render('Users');
 })->middleware(['auth', 'verified'])->name('users');
+
+Route::get('/users/create', function () {
+    return Inertia::render('User/Create');
+})->middleware(['auth', 'verified'])->name('user.create');
 require __DIR__.'/auth.php';
