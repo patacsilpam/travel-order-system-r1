@@ -11,9 +11,14 @@ const Users = ({ auth }) => {
                 }
             >
                 <Head title="Users" />
-                <div className="bg-white">
+                <div className="">
                     <div className="text-right mx-9 my-5">
-                        <Link href={route("user.create")}>Add User</Link>
+                        <Link
+                            href={route("user.create")}
+                            className="bg-blue-700 text-white p-3 rounded-md"
+                        >
+                            Add User
+                        </Link>
                     </div>
                 </div>
             </AuthenticatedLayout>
