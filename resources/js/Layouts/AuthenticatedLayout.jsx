@@ -1,9 +1,15 @@
 import { useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { navItems } from "@/data/globals";
+import {
+    CircleGauge,
+    FilePen,
+    Compass,
+    Users,
+    User,
+    Settings,
+    Building2,
+} from "lucide-react";
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -124,46 +130,84 @@ export default function Authenticated({ user, header, children }) {
                 </div>
         </div>
         */
-        <div className="flex flex-row h-screen bg-slate-100">
+
+        <div className="flex flex-row justify-around h-screen bg-slate-100 ">
             <div
                 className={
                     (showingNavigationDropdown ? "hidden" : "block") +
-                    " lg:block w-[370px]  dark:bg-gray-800 sm:hidden"
+                    " md:block w-[370px]  dark:bg-gray-800 sm:hidden"
                 }
             >
-                <div className="flex flex-col">
-                    <div className="flex flex-row items-center p-2 gap-2">
+                <div className="flex flex-col h-screen justify-around">
+                    <div className="flex flex-row items-center -mt-14 p-2 gap-2">
                         <img src="/images/logo.png" className="w-[60px]" />
                         <div className="text-white">
                             <small className="text-[#E7E7E7]">NCIP R1</small>
                             <p>TRAVEL ORDER SYSTEM</p>
                         </div>
                     </div>
-                    <ul className="flex flex-col space-y-3 mt-[110px]">
-                        {navItems.map((item, key) => (
-                            <NavLink
-                                key={key}
-                                href={item.link}
-                                active={route().current(item.link)}
-                            >
-                                <span className="flex gap-2">
-                                    {<item.icon />}
-                                    {item.name}
-                                </span>
-                            </NavLink>
-                        ))}
+                    <ul className="flex flex-col space-y-3">
+                        <NavLink
+                            href={route("dashboard")}
+                            active={route().current("dashboard")}
+                            className="gap-2"
+                        >
+                            <CircleGauge />
+                            &nbsp;Dashboard
+                        </NavLink>
+                        <NavLink
+                            href={route("travel-request.show")}
+                            active={route().current("travel-request.show")}
+                            className="gap-2"
+                        >
+                            <FilePen />
+                            Travel Request
+                        </NavLink>
+                        <NavLink
+                            href={route("travel-order.show")}
+                            active={route().current("travel-order.show")}
+                            className="gap-2"
+                        >
+                            <Compass />
+                            Travel Order
+                        </NavLink>
+                        <NavLink
+                            href={route("division.show")}
+                            active={route().current("division.show")}
+                            className="gap-2"
+                        >
+                            <Building2 />
+                            Division
+                        </NavLink>
+                        <NavLink
+                            href={route("user.show")}
+                            active={route().current("user.show")}
+                            className="gap-2"
+                        >
+                            <User />
+                            Users
+                        </NavLink>
                     </ul>
+
+                    <NavLink
+                        href={route("settings.show")}
+                        active={route().current("settings.show")}
+                        className="gap-2"
+                    >
+                        <Settings />
+                        Settings
+                    </NavLink>
                 </div>
             </div>
-            <div className="w-screen ">
-                <div className="flex flex-row items-center justify-between p-5 border border-b-gray-300 shadow-sm">
+            <div className="w-screen">
+                <div className="flex flex-row items-center justify-between md:justify-end p-5 border border-b-gray-300 shadow-sm">
                     <button
                         onClick={() =>
                             setShowingNavigationDropdown(
                                 (previousState) => !previousState
                             )
                         }
-                        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-800 hover:text-gray-800 dark:hover:text-gray-800 hover:bg-gray-100  focus:outline-none focus:bg-gray-100  focus:text-gray-800 dark:focus:text-gray-800 transition duration-150 ease-in-out"
+                        className="lg:hidden md:flex inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-800 hover:text-gray-800 dark:hover:text-gray-800 hover:bg-gray-100  focus:outline-none focus:bg-gray-100  focus:text-gray-800 dark:focus:text-gray-800 transition duration-150 ease-in-out"
                     >
                         <svg
                             className="h-6 w-6"
