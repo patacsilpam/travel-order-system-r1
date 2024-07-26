@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TravelOrdersController;
 use App\Http\Controllers\TravelRequestController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class,'show'])->name('user.show');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/settings', [SettingsController::class,'show'])->name('settings.show');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
