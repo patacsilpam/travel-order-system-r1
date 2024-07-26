@@ -11,8 +11,8 @@ use Inertia\Response;
 class TravelRequestController extends Controller
 {
     //
-    public function edit(Request $request): Response
+    public function show()
     {
-        return Inertia::render('TravelRequest.edit');
+        return Inertia::render('TravelRequest/Show');
     }
 }
