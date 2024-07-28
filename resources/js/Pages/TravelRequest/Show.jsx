@@ -1,5 +1,6 @@
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import WizardForm from "@/Components/WizardForm";
 const Show = ({ auth }) => {
     return (
         <div>
@@ -10,6 +11,9 @@ const Show = ({ auth }) => {
                 }
             >
                 <Head title="Travel Request" />
+                <div className="bg-white m-10 shadow-sm">
+                    <WizardForm />
+                </div>
             </AuthenticatedLayout>
         </div>
     );
