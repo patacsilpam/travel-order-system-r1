@@ -10,6 +10,7 @@ const Show = ({ auth }) => {
                 }
             >
                 <Head title="Division" />
+                <main>asdfasdfasdjkhfj</main>
             </AuthenticatedLayout>
         </div>
     );
