@@ -14,4 +14,7 @@ class UserController extends Controller
     public function show(){
         return Inertia::render('User/Show');
     }
+    public function create(){
+        return Inertia::render('User/Create');
+    }
 }
