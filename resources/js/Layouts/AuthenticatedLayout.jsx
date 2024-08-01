@@ -162,7 +162,7 @@ export default function Authenticated({ user, header, children }) {
                             className="gap-2"
                         >
                             <FilePen />
-                            Travel Request
+                            Travel Requests
                         </NavLink>
                         <NavLink
                             href={route("travel-order.show")}
@@ -170,7 +170,7 @@ export default function Authenticated({ user, header, children }) {
                             className="gap-2"
                         >
                             <Compass />
-                            Travel Order
+                            Travel Orders
                         </NavLink>
                         <NavLink
                             href={route("division.show")}
@@ -178,7 +178,7 @@ export default function Authenticated({ user, header, children }) {
                             className="gap-2"
                         >
                             <Building2 />
-                            Division
+                            Offices
                         </NavLink>
                         <NavLink
                             href={route("user.show")}
