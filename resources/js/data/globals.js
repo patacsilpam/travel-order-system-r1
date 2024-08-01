@@ -52,3 +52,18 @@ export const navItems = [
         icon: Settings,
     },
 ];
+
+// tableStyle.js
+const tableCustomStyles = {
+    headCells: {
+        style: {
+            fontSize: "20px",
+            fontWeight: "bold",
+            paddingLeft: "8px", // Adjust padding as needed
+            justifyContent: "center",
+            textColor: "#fff", // Customize the background color
+        },
+    },
+};
+
+export default tableCustomStyles;
