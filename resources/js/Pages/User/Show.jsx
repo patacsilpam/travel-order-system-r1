@@ -1,7 +1,12 @@
 import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import DataTable from "react-data-table-component";
+import DataTableExtensions from "react-data-table-component-extensions";
 const columns = [
+    {
+        id: "Number",
+        selector: (row) => row.id,
+    },
     {
         name: "Title",
         selector: (row) => row.title,
@@ -24,6 +29,14 @@ const data = [
         year: "1984",
     },
 ];
+const customStyles = {
+    headCells: {
+        style: {
+            fontSize: "1rem",
+            fontWeigth: "900",
+        },
+    },
+};
 const Show = ({ auth }) => {
     return (
         <div>
@@ -36,25 +49,32 @@ const Show = ({ auth }) => {
                 <Head title="User" />
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">User</h1>
-                    <div className="flex justify-between flex-col lg:flex-row">
-                        <div>
-                            <span>Insert Filter Here</span>
-                        </div>
+                    <div className="flex justify-end absolute right-0 px-5">
                         <div>
                             <Link
-                                href=""
+                                href={route("user.create")}
                                 className="bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md w-[200px] text-center"
                             >
                                 <strong>Create User</strong>
                             </Link>
                         </div>
                     </div>
-                    <div className="bg-slate-200">
-                        <DataTable
+                    <div className="relative">
+                        <DataTableExtensions
                             columns={columns}
                             data={data}
-                            selectableRows
-                        />
+                            print={false}
+                            export={false}
+                        >
+                            <DataTable
+                                fixedHeader={true}
+                                pagination
+                                highlightOnHover
+                                customStyles={customStyles}
+                                responsive={true}
+                                className="pt-3"
+                            />
+                        </DataTableExtensions>
                     </div>
                 </div>
             </AuthenticatedLayout>
