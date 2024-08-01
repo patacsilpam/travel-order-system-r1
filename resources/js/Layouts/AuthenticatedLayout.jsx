@@ -136,7 +136,7 @@ export default function Authenticated({ user, header, children }) {
                 className={
                     (showingNavigationDropdown
                         ? "flex absolute top-0 left-0 h-full z-50"
-                        : "hidden") + "   bg-gray-900 lg:flex"
+                        : "hidden") + "   bg-[#0A0E20] lg:flex"
                 }
             >
                 <div className="flex flex-col space-y-24">
