@@ -36,11 +36,17 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/division', [DivisionController::class,'show'])->name('division.show');
 });
+Route::middleware('auth')->group(function () {
+    Route::get('/division/create', [DivisionController::class,'create'])->name('division.create');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class,'show'])->name('user.show');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/user/create', [UserController::class,'create'])->name('user.create');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class,'show'])->name('settings.show');
 });
