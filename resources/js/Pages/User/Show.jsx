@@ -2,6 +2,7 @@ import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import { CirclePlus } from "lucide-react";
 const columns = [
     {
         id: "Number",
@@ -49,14 +50,16 @@ const Show = ({ auth }) => {
                 <Head title="User" />
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">User</h1>
-                    <div className="flex justify-end absolute right-0 px-5">
-                        <div>
-                            <Link
-                                href={route("user.create")}
-                                className="bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md w-[200px] text-center"
-                            >
-                                <strong>Create User</strong>
-                            </Link>
+                    <div className="flex justify-end  px-5">
+                        <div className="flex justify-center bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md  text-center space-x-3">
+                            <div>
+                                <CirclePlus />
+                            </div>
+                            <div>
+                                <Link href={route("user.create")}>
+                                    <span>Add New User</span>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="relative">
