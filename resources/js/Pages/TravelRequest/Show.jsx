@@ -3,15 +3,15 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import WizardForm from "@/Components/WizardForm";
 const Show = ({ auth }) => {
     return (
-        <div>
+        <div className="relative">
             <AuthenticatedLayout
                 user={auth.user}
                 header={
-                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"></h2>
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight relative"></h2>
                 }
             >
                 <Head title="Travel Request" />
-                <div className="bg-white m-10 shadow-sm">
+                <div className="bg-white m-10 shadow-sm relative">
                     <WizardForm />
                 </div>
             </AuthenticatedLayout>
