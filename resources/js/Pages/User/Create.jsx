@@ -32,7 +32,7 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             {status}
                         </div>
                     )}
-                    <h1 className="text-4xl font-bold my-5">Create User</h1>
+                    <h1 className="text-4xl font-bold my-5">Add New User</h1>
                     <form
                         onSubmit={submitUser}
                         className=" bg-white shadow-sm rounded-md space-y-5 p-5"
