@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-
-const steps = ["Employee Details", "Travel Details", "Validation"];
+import StepOne from "./StepOne";
+import StepTwo from "./StepTwo";
+import StepThree from "./StepThree";
+const steps = ["Employee Information", "Travel Details", "Validation"];
 
 const WizardForm = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -19,7 +21,7 @@ const WizardForm = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 relative h-screen">
             <div className="flex gap-2 justify-between mb-4">
                 {steps.map((step, index) => (
                     <div
@@ -37,9 +39,21 @@ const WizardForm = () => {
                 ))}
             </div>
             <div className="p-4 border">
-                {currentStep === 0 && <div>Content for Step 1</div>}
-                {currentStep === 1 && <div>Content for Step 2</div>}
-                {currentStep === 2 && <div>Content for Step 3</div>}
+                {currentStep === 0 && (
+                    <div>
+                        <StepOne formData="" setFormData="" />
+                    </div>
+                )}
+                {currentStep === 1 && (
+                    <div>
+                        <StepTwo formData="" setFormData="" />
+                    </div>
+                )}
+                {currentStep === 2 && (
+                    <div>
+                        <StepThree formData="" setFormData="" />
+                    </div>
+                )}
             </div>
             <div className="flex justify-between mt-4">
                 <button
