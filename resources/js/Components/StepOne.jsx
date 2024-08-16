@@ -16,11 +16,11 @@ const StepOne = ({ formData, setFormData }) => {
         setCurrentDate(formattedDate);
     }, []);
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 ">
             {/**MODE OF FILING */}
             <div className="space-x-4">
                 <InputLabel value="Mode of Filing" className="mb-3" />
-                <div className="flex flex-row space-x-6">
+                <div className="flex md:flex-row flex-col lg:space-y-0 space-y-1 sm:space-x-3">
                     <div className="flex items-center border -1 border-neutral-300 p-2 rounded-sm hover:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
                         <input
                             id="immediate"
@@ -113,6 +113,18 @@ const StepOne = ({ formData, setFormData }) => {
                 <TextInput
                     type="date"
                     placeholder="Select date of Official Travel (TO)"
+                    className="container-fluid w-full"
+                    value={formData.dateTo}
+                    onChange={(e) =>
+                        setFormData({ ...formData, dateTo: e.target.value })
+                    }
+                />
+            </div>
+            <div>
+                <InputLabel value="Source of Fund" />
+                <TextInput
+                    type="text"
+                    placeholder="Source of Fund"
                     className="container-fluid w-full"
                     value={formData.dateTo}
                     onChange={(e) =>
