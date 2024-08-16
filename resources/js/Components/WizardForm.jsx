@@ -21,16 +21,17 @@ const WizardForm = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 relative h-screen">
+        <div className="container mx-auto p-4 h-[85vh] overflow-auto ">
+            <h1 className="my-5 text-2xl font-black">Travel Request</h1>
             <div className="flex gap-2 justify-between mb-4">
                 {steps.map((step, index) => (
                     <div
                         key={index}
                         className={`flex-1 text-center py-2 ${
                             index < currentStep
-                                ? "bg-green-500 text-white"
+                                ? "bg-green-600 text-white"
                                 : index === currentStep
-                                ? "bg-blue-500 text-white"
+                                ? "bg-blue-600 text-white"
                                 : "bg-gray-200"
                         }`}
                     >
@@ -66,14 +67,14 @@ const WizardForm = () => {
                 {currentStep < steps.length - 1 ? (
                     <button
                         onClick={nextStep}
-                        className="bg-blue-500 text-white py-2 px-4 rounded"
+                        className="bg-blue-600 text-white py-2 px-4 rounded"
                     >
                         Next
                     </button>
                 ) : (
                     <button
                         onClick={handleSubmit}
-                        className="bg-green-500 text-white py-2 px-4 rounded"
+                        className="bg-green-600 text-white py-2 px-4 rounded"
                     >
                         Submit
                     </button>
