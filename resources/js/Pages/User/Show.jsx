@@ -50,7 +50,7 @@ const Show = ({ auth }) => {
                 <Head title="User" />
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">User</h1>
-                    <div className="flex justify-end  px-5">
+                    <div className="flex  md:justify-end sm:justify-start mb-1">
                         <div className="flex justify-center bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md  text-center space-x-3">
                             <div>
                                 <CirclePlus />
