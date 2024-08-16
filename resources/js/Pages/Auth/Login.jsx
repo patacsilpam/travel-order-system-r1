@@ -51,7 +51,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             </div>
             <form onSubmit={submit} className="p-4">
-                <div>
+                <div className="mt-7">
                     <InputLabel htmlFor="email" value="Email" />
                     <TextInput
                         id="email"
@@ -68,7 +68,7 @@ export default function Login({ status, canResetPassword }) {
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-5">
                     <InputLabel htmlFor="password" value="Password" />
 
                     <TextInput
@@ -85,7 +85,7 @@ export default function Login({ status, canResetPassword }) {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="block mt-4">
+                <div className="block mt-3">
                     <label className="flex items-center">
                         <Checkbox
                             name="remember"
