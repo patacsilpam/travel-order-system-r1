@@ -131,7 +131,7 @@ export default function Authenticated({ user, header, children }) {
         </div>
         */
 
-        <div className="flex flex-row justify-around h-screen bg-slate-100">
+        <div className="flex flex-row justify-around h-[100vh] bg-slate-100 ">
             <div
                 className={
                     (showingNavigationDropdown
@@ -328,9 +328,9 @@ export default function Authenticated({ user, header, children }) {
                     </div>
                 </div>
                 <main
-                    className={
-                        showingNavigationDropdown ? "backdrop-opacity-70 " : ""
-                    }
+                    className={`overflow-hidden ${
+                        showingNavigationDropdown ? "backdrop-opacity-70" : ""
+                    }`}
                 >
                     {children}
                 </main>
