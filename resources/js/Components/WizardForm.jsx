@@ -21,7 +21,7 @@ const WizardForm = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 h-[85vh] overflow-auto ">
+        <div className="container mx-auto p-4 h-[87vh] overflow-auto bg-white mt-5">
             <h1 className="my-5 text-2xl font-black">Travel Request</h1>
             <div className="flex gap-2 justify-between mb-4">
                 {steps.map((step, index) => (
