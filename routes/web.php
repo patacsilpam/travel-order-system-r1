@@ -30,8 +30,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/travel-request/create', [TravelRequestController::class, 'create'])->name('travel-request.create');
+});
+Route::middleware('auth')->group(function () {
     Route::get('/travel-order', [TravelOrdersController::class, 'show'])->name('travel-order.show');
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/division', [DivisionController::class,'show'])->name('division.show');
