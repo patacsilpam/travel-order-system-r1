@@ -17,4 +17,8 @@ class TravelRequestController extends Controller
     {
         return Inertia::render('TravelRequest/Show');
     }
+    public function create()
+    {
+        return Inertia::render('TravelRequest/Create');
+    }
 }
