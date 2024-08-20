@@ -44,12 +44,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/division/create', [DivisionController::class,'create'])->name('division.create');
 });
 
-Route::middleware('auth')->group(function () {
+/*Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class,'show'])->name('user.show');
-});
+});*/
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/create', [UserController::class,'create'])->name('user.create');
+    Route::get('/user', [UserController::class,'show'])->name('user.show');
+    Route::get('/user/create', [UserController::class, 'createForm'])->name('user.create');
+    Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class,'show'])->name('settings.show');
