@@ -1,22 +1,26 @@
+import React from "react";
+import { useForm, usePage } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
-import React from "react";
-import { useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
-const CreateUser = ({ auth, status, canResetPassword }) => {
-    const { data, setData, post, processing, errors, reset } = useForm({
+import FlashMessage from "@/Components/FlashMessage";
+const CreateUser = ({ auth, success, status, canResetPassword }) => {
+    const { data, setData, post, processing, errors } = useForm({
         firstName: "",
+        lastName: "",
+        position: "",
+        office: "",
+        email: "",
         password: "",
-        remember: false,
     });
-    const submitUser = (e) => {
+    function submitUser(e) {
         e.preventDefault();
-
-        get(route("users"));
-    };
+        post("/user/create");
+    }
+    const { flash } = usePage().props;
     return (
         <div>
             <AuthenticatedLayout
@@ -26,6 +30,27 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                 }
             >
                 <Head title="Add User" />
+                <div className="m-3">
+                    {flash.message && (
+                        <div
+                            class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+                            role="alert"
+                        >
+                            <span class="block sm:inline">{flash.message}</span>
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                <svg
+                                    class="fill-current h-6 w-6 text-blue-500"
+                                    role="button"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <title>Close</title>
+                                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                </svg>
+                            </span>
+                        </div>
+                    )}
+                </div>
                 <div className="flex flex-col py-7 m-10 ">
                     {status && (
                         <div className="mb-4 font-medium text-sm text-green-600">
@@ -42,7 +67,6 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             <TextInput
                                 id="fname"
                                 type="text"
-                                name="fname"
                                 value={data.firstName}
                                 className="mt-1 block w-full"
                                 autoComplete="firstName"
@@ -62,11 +86,14 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             <TextInput
                                 id="lname"
                                 type="text"
-                                name="lname"
+                                value={data.lastName}
                                 className="mt-1 block w-full"
                                 autoComplete="lastName"
                                 isFocused={true}
                                 placeholder="Enter last name"
+                                onChange={(e) =>
+                                    setData("lastName", e.target.value)
+                                }
                             />
                         </div>
                         <div>
@@ -74,11 +101,14 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             <TextInput
                                 id="position"
                                 type="text"
-                                name="position"
+                                value={data.position}
                                 className="mt-1 block w-full"
                                 autoComplete="position"
                                 isFocused={true}
                                 placeholder="Enter position"
+                                onChange={(e) =>
+                                    setData("position", e.target.value)
+                                }
                             />
                         </div>
                         <div>
@@ -86,11 +116,14 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             <TextInput
                                 id="office"
                                 type="text"
-                                name="office"
+                                value={data.office}
                                 className="mt-1 block w-full"
                                 autoComplete="office"
                                 isFocused={true}
                                 placeholder="Enter office"
+                                onChange={(e) =>
+                                    setData("office", e.target.value)
+                                }
                             />
                         </div>
                         <div>
@@ -98,11 +131,14 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             <TextInput
                                 id="email-address"
                                 type="email"
-                                name="email"
+                                value={data.email}
                                 className="mt-1 block w-full"
                                 autoComplete="email"
                                 isFocused={true}
                                 placeholder="Enter email address"
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
                             />
                         </div>
                         <div>
@@ -110,11 +146,14 @@ const CreateUser = ({ auth, status, canResetPassword }) => {
                             <TextInput
                                 id="password"
                                 type="password"
-                                name="password"
+                                value={data.password}
                                 className="mt-1 block w-full"
                                 autoComplete="password"
                                 isFocused={true}
                                 placeholder="Enter password"
+                                onChange={(e) =>
+                                    setData("password", e.target.value)
+                                }
                             />
                         </div>
                         <div className="text-center mt-5">
