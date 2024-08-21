@@ -10,7 +10,7 @@ const columns = [
     },
     {
         name: "Name",
-        selector: (row) => row.firstName,
+        selector: (row) => `${row.firstName} ${row.lastName}`,
     },
     {
         name: "Position",
@@ -22,6 +22,10 @@ const columns = [
     },
     {
         name: "Email",
+        selector: (row) => row.email,
+    },
+    {
+        name: "Action",
         selector: (row) => row.email,
     },
 ];
