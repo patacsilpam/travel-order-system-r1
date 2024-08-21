@@ -12,13 +12,16 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 class UserController extends Controller
 {
-    //
+    //display data from db
     public function show(){
-        return Inertia::render('User/Show');
+        $fetchUser = User::all();
+        return Inertia::render('User/Show',['data' => $fetchUser]);
     }
+    //routes for adding new user
     public function createForm(){
         return Inertia::render('User/Create');
     }
+    //submit user
     public function create(Request $request)
     {
        $validateUser = $request->validate([
