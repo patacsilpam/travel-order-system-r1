@@ -9,27 +9,23 @@ const columns = [
         selector: (row) => row.id,
     },
     {
-        name: "Title",
-        selector: (row) => row.title,
+        name: "Name",
+        selector: (row) => row.firstName,
     },
     {
-        name: "Year",
-        selector: (row) => row.year,
+        name: "Position",
+        selector: (row) => row.position,
+    },
+    {
+        name: "Office",
+        selector: (row) => row.office,
+    },
+    {
+        name: "Email",
+        selector: (row) => row.email,
     },
 ];
 
-const data = [
-    {
-        id: 1,
-        title: "Beetlejuice",
-        year: "1988",
-    },
-    {
-        id: 2,
-        title: "Ghostbusters",
-        year: "1984",
-    },
-];
 const customStyles = {
     headCells: {
         style: {
@@ -38,7 +34,7 @@ const customStyles = {
         },
     },
 };
-const Show = ({ auth }) => {
+const Show = ({ auth, data }) => {
     return (
         <div>
             <AuthenticatedLayout
