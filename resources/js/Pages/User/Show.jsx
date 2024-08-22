@@ -2,7 +2,10 @@ import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import ActionLinks from "@/Components/ActionLinks";
 import { CirclePlus } from "lucide-react";
+const handleEditLink = (row) => `user/edit/${row.id}`;
+const handleDeleteLink = (row) => `/delete/${row.id}`;
 const columns = [
     {
         id: "Number",
@@ -26,7 +29,15 @@ const columns = [
     },
     {
         name: "Action",
-        selector: (row) => row.email,
+        cell: (row) => (
+            <ActionLinks
+                row={row}
+                editUrl={handleEditLink}
+                deleteUrl={handleDeleteLink}
+                editLabel="Edit"
+                deleteLabel="Remove"
+            />
+        ),
     },
 ];
 
@@ -35,6 +46,12 @@ const customStyles = {
         style: {
             fontSize: "1rem",
             fontWeigth: "900",
+        },
+    },
+    cells: {
+        style: {
+            fontSize: "1.1rem",
+            padding: "1rem",
         },
     },
 };
