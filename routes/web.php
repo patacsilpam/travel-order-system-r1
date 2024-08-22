@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class,'show'])->name('user.show');
     Route::get('/user/create', [UserController::class, 'createForm'])->name('user.create');
     Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('/user/edit/{id}', [UserController::class, 'editForm'])->name('user.edit');
+    Route::put('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/settings', [SettingsController::class,'show'])->name('settings.show');
