@@ -13,7 +13,7 @@ const ActionLinks = ({
         <div className="flex lg:flex-row flex-col gap-3">
             <Link
                 href={editUrl(row)}
-                className="bg-green-600 text-whi p-1 rounded-sm "
+                className="bg-green-600 text-white p-1 rounded-sm "
             >
                 {editLabel}
             </Link>
