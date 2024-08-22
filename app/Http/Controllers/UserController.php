@@ -43,5 +43,29 @@ class UserController extends Controller
     ]);
         return redirect()->route('user.create')->with('success', 'User created successfully.');
     }
-    
+
+    public function editForm($id){
+        $user = User::findOrFail($id);
+        return Inertia::render('User/Edit',['user' => $user]);
+    }
+    public function edit(Request $request,$id){
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'office' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'required|string|min:8'
+            // Add other fields you want to update
+        ]);
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+      
+        $user->update($validated);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'User updated successfully.');
+    }
 }
