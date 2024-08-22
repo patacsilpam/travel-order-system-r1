@@ -131,15 +131,15 @@ export default function Authenticated({ user, header, children }) {
         </div>
         */
 
-        <div className="flex flex-row justify-around h-[100vh] bg-slate-100 ">
+        <div className="flex flex-row justify-around  bg-slate-100 overflow-auto">
             <div
                 className={
                     (showingNavigationDropdown
-                        ? "flex absolute top-0 left-0 h-full z-50"
+                        ? "flex absolute top-0 left-0 z-50"
                         : "hidden") + "   bg-[#0A0E20] lg:flex"
                 }
             >
-                <div className="flex flex-col space-y-24">
+                <div className="flex flex-col space-y-24 h-screen">
                     <div className="flex flex-row items-center p-2 gap-2 w-[300px]">
                         <img src="/images/logo.png" className="w-[60px]" />
                         <div className="text-white">
@@ -199,7 +199,7 @@ export default function Authenticated({ user, header, children }) {
                     </ul>
                 </div>
             </div>
-            <div className="w-screen">
+            <div className="w-screen h-screen">
                 <div className="flex flex-row items-center justify-between lg:justify-end p-5 border border-b-gray-300 shadow-sm">
                     <button
                         onClick={() =>
@@ -332,7 +332,7 @@ export default function Authenticated({ user, header, children }) {
                         showingNavigationDropdown ? "backdrop-opacity-70" : ""
                     }`}
                 >
-                    {children}
+                    <div className="overflow-hidden"> {children} </div>
                 </main>
             </div>
         </div>
