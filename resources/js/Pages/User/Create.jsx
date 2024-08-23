@@ -13,6 +13,7 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
         lastName: "",
         position: "",
         office: "",
+        role: "",
         email: "",
         password: "",
     });
@@ -135,6 +136,22 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
                             />
                         </div>
                         <InputError message={errors.office} className="mt-2" />
+                        <div>
+                            <InputLabel value="Role" />
+                            <TextInput
+                                id="rolde"
+                                type="text"
+                                value={data.role}
+                                className="mt-1 block w-full"
+                                autoComplete="office"
+                                isFocused={true}
+                                placeholder="Enter office"
+                                onChange={(e) =>
+                                    setData("role", e.target.value)
+                                }
+                            />
+                        </div>
+                        <InputError message={errors.role} className="mt-2" />
                         <div>
                             <InputLabel value="Email Address" />
                             <TextInput
