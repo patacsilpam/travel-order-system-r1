@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('firstName')->after('name');
-            $table->string('lastName')->after('firstName');
-            $table->string('position')->after('lastName');
+
+            $table->uuid('user_id')->unique()->after('id');
+            $table->string('first_name')->after('user_id');
+            $table->string('last_name')->after('first_name');
+            $table->string('position')->after('last_name');
             $table->string('office')->after('position');
+            $table->string('role')->after('office');
         });
     }
 
