@@ -6,14 +6,15 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import FlashMessage from "@/Components/FlashMessage";
 const EditUser = ({ auth, user, success, status, canResetPassword }) => {
     const { data, setData, put, processing, errors } = useForm({
         id: user.id || "",
-        firstName: user.firstName || "",
-        lastName: user.lastName || "",
+        user_id: user.user_id || "",
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
         position: user.position || "",
         office: user.office || "",
+        role: user.role || "",
         email: user.email || "",
         password: user.password || "",
         // Add other fields as needed
@@ -21,6 +22,7 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
     function updateUser(e) {
         e.preventDefault();
         put(`/user/edit/${user.id}`);
+        console.log(data);
     }
     return (
         <div>
@@ -39,22 +41,23 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                         onSubmit={updateUser}
                         className=" bg-white shadow-sm rounded-md space-y-5 p-5"
                     >
+                        <p>{data.password}</p>
                         <div>
                             <InputLabel value="First Name" />
                             <TextInput
                                 id="fname"
                                 type="text"
-                                value={data.firstName}
+                                value={data.first_name}
                                 className="mt-1 block w-full"
                                 autoComplete="firstName"
                                 isFocused={true}
                                 placeholder="Enter first name"
                                 onChange={(e) =>
-                                    setData("firstName", e.target.value)
+                                    setData("first_name", e.target.value)
                                 }
                             />
                             <InputError
-                                message={errors.firstName}
+                                message={errors.first_name}
                                 className="mt-2"
                             />
                         </div>
@@ -63,14 +66,18 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                             <TextInput
                                 id="lname"
                                 type="text"
-                                value={data.lastName}
+                                value={data.last_name}
                                 className="mt-1 block w-full"
                                 autoComplete="lastName"
                                 isFocused={true}
                                 placeholder="Enter last name"
                                 onChange={(e) =>
-                                    setData("lastName", e.target.value)
+                                    setData("last_name", e.target.value)
                                 }
+                            />
+                            <InputError
+                                message={errors.last_name}
+                                className="mt-2"
                             />
                         </div>
                         <div>
@@ -88,6 +95,10 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                                 }
                             />
                         </div>
+                        <InputError
+                            message={errors.position}
+                            className="mt-2"
+                        />
                         <div>
                             <InputLabel value="Office" />
                             <TextInput
@@ -103,6 +114,23 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                                 }
                             />
                         </div>
+                        <InputError message={errors.office} className="mt-2" />
+                        <div>
+                            <InputLabel value="Role" />
+                            <TextInput
+                                id="role"
+                                type="text"
+                                value={data.role}
+                                className="mt-1 block w-full"
+                                autoComplete="role"
+                                isFocused={true}
+                                placeholder="Enter Role"
+                                onChange={(e) =>
+                                    setData("role", e.target.value)
+                                }
+                            />
+                        </div>
+                        <InputError message={errors.role} className="mt-2" />
                         <div>
                             <InputLabel value="Email Address" />
                             <TextInput
@@ -116,6 +144,10 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                                 onChange={(e) =>
                                     setData("email", e.target.value)
                                 }
+                            />
+                            <InputError
+                                message={errors.email}
+                                className="mt-2"
                             />
                         </div>
                         <div>
@@ -131,6 +163,10 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                                 onChange={(e) =>
                                     setData("password", e.target.value)
                                 }
+                            />
+                            <InputError
+                                message={errors.password}
+                                className="mt-2"
                             />
                         </div>
                         <div className="text-center mt-5">
