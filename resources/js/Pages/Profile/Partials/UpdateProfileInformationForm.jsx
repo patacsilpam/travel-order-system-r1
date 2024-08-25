@@ -14,8 +14,8 @@ export default function UpdateProfileInformation({
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
-            firstName: `${user.firstName}`,
-            lastName: `${user.lastName}`,
+            first_name: `${user.first_name}`,
+            last_name: `${user.last_name}`,
             email: user.email,
         });
 
@@ -44,14 +44,14 @@ export default function UpdateProfileInformation({
                     <TextInput
                         id="name"
                         className="mt-1 block w-full"
-                        value={data.firstName}
-                        onChange={(e) => setData("firstName", e.target.value)}
+                        value={data.first_name}
+                        onChange={(e) => setData("first_name", e.target.value)}
                         required
                         isFocused
                         autoComplete="firstName"
                     />
 
-                    <InputError className="mt-2" message={errors.firstName} />
+                    <InputError className="mt-2" message={errors.first_name} />
                 </div>
                 <div>
                     <InputLabel htmlFor="lastName " value="Last Name" />
@@ -59,14 +59,14 @@ export default function UpdateProfileInformation({
                     <TextInput
                         id="name"
                         className="mt-1 block w-full"
-                        value={data.lastName}
-                        onChange={(e) => setData("lastName", e.target.value)}
+                        value={data.last_name}
+                        onChange={(e) => setData("last_name", e.target.value)}
                         required
                         isFocused
                         autoComplete="lastName"
                     />
 
-                    <InputError className="mt-2" message={errors.lastName} />
+                    <InputError className="mt-2" message={errors.last_name} />
                 </div>
 
                 <div>
