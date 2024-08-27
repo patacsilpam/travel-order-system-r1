@@ -6,6 +6,7 @@ use App\Http\Controllers\TravelRequestController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PositionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,9 +45,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/division/create', [DivisionController::class,'create'])->name('division.create');
 });
 
-/*Route::middleware('auth')->group(function () {
-    Route::get('/user', [UserController::class,'show'])->name('user.show');
-});*/
+
+Route::middleware('auth')->group(function () {
+    Route::get('/positions', [PositionController::class,'show'])->name('positions.show');
+    Route::post('/positions/create', [PositionController::class,'create'])->name('positions.create');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class,'show'])->name('user.show');
