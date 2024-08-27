@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { useForm, usePage, router } from "@inertiajs/react";
 import { Head, Link } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
@@ -19,7 +19,9 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
     });
     function submitUser(e) {
         e.preventDefault();
-        post("/user/create");
+        router.post("/position", data, {
+            onSuccess: () => {},
+        });
     }
     const { flash } = usePage().props;
     return (
