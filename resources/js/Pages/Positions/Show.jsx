@@ -4,18 +4,25 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { CirclePlus } from "lucide-react";
 import AddPositionForm from "@/Components/AddPositionForm";
+import EditPositionForm from "./EditPositionForm";
+import DeletePositionForm from "./DeletePositionForm";
 const columns = [
-    {
+    /*{
         id: "Number",
         selector: (row) => row.id,
-    },
+    },*/
     {
         name: "Position",
         selector: (row) => row.name,
     },
     {
         name: "Action",
-        selector: (row) => row.name,
+        selector: (row) => (
+            <div className="flex lg:flex-row flex-col py-2 gap-2">
+                <EditPositionForm position={row} />
+                <DeletePositionForm position={row} />
+            </div>
+        ),
     },
 ];
 const customStyles = {
