@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
@@ -11,12 +13,13 @@ class UserController extends Controller
 {
     //display data from db
     public function show(){
-        $fetchUser = User::all();
+        $fetchUser = User::orderBy('first_name','asc')->get();
         return Inertia::render('User/Show',['data' => $fetchUser]);
     }
     //routes for adding new user
     public function createForm(){
-        return Inertia::render('User/Create');
+        $positions = Position::orderBy('name', 'asc')->get();
+        return Inertia::render('User/Create',['positions' => $positions]);
     }
     //submit user
     public function create(Request $request)
@@ -46,6 +49,7 @@ class UserController extends Controller
 
     public function editForm($id){
         $user = User::findOrFail($id);
+        $positions = Position::all();
         return Inertia::render('User/Edit',['user' => $user]);
     }
     public function edit(Request $request,$id){

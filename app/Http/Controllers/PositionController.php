@@ -35,36 +35,37 @@ class PositionController extends Controller
         return back()->with('message', 'Student added successfully');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Position $position)
-    {
-        //
+    public function editPosition($id){
+        $position = Position::findOrFail($id);
+        return Inertia::render('Position/EditPositionForm', ['position' => $position]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Position $position)
+    public function edit(Request $request, $id)
     {
         //
+        $request->validate(['name' => 'required|string|max:255']);
+        $position = Position::findOrFail($id);
+        $position->update(['name' => $request->name]);
+        return back()->with('message', ' Added successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Position $position)
+    public function destroy($id)
     {
         //
+        $position = Position::findOrFail($id);
+        // Delete the position
+        $position->delete();
+        return back()->with('message', 'Added successfully');
+        //return Inertia::render('Position/DeletePositionForm', ['position' => $position]);
     }
 }
