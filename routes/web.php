@@ -48,7 +48,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/positions', [PositionController::class,'show'])->name('positions.show');
-    Route::post('/positions/create', [PositionController::class,'create'])->name('positions.create');
+    Route::post('/positions', [PositionController::class,'create'])->name('positions');
+    Route::get('/positions/{id}/edit', [PositionController::class, 'editPosition'])->name('positions.edit');
+    Route::put('/positions/{id}/edit', [PositionController::class, 'edit'])->name('positions.edit');
+    Route::delete('/positions/{id}/delete', [PositionController::class, 'destroy'])->name('positions.delete');
+    
+
 });
 
 Route::middleware('auth')->group(function () {
