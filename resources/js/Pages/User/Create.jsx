@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, usePage, router } from "@inertiajs/react";
 import { Head, Link } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
@@ -6,8 +6,9 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import SelectDropdown from "@/Components/SelectDropdown";
 import FlashMessage from "@/Components/FlashMessage";
-const CreateUser = ({ auth, success, status, canResetPassword }) => {
+const CreateUser = ({ auth, success, status, canResetPassword, positions }) => {
     const { data, setData, post, processing, errors } = useForm({
         firstName: "",
         lastName: "",
@@ -19,10 +20,18 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
     });
     function submitUser(e) {
         e.preventDefault();
-        router.post("/position", data, {
+        router.post("/user/create", data, {
             onSuccess: () => {},
         });
     }
+    const positionOptions = positions.map((position) => ({
+        value: position.name,
+        label: position.name,
+    }));
+    const [isOpen, setIsOpen] = useState(true);
+    const toggleVisibility = () => {
+        setIsOpen(!isOpen);
+    };
     const { flash } = usePage().props;
     return (
         <div>
@@ -39,10 +48,15 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
                             class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
                             role="alert"
                         >
-                            <span class="block sm:inline">{flash.message}</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <span className="block sm:inline">
+                                {flash.message}
+                            </span>
+                            <span
+                                className="absolute top-0 bottom-0 right-0 px-4 py-3"
+                                onClick={toggleVisibility}
+                            >
                                 <svg
-                                    class="fill-current h-6 w-6 text-blue-500"
+                                    className="fill-current h-6 w-6 text-blue-500"
                                     role="button"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
@@ -105,6 +119,20 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
                         />
                         <div>
                             <InputLabel value="Position" />
+                            <SelectDropdown
+                                options={positionOptions}
+                                value={data.position}
+                                onChange={(e) =>
+                                    setData("position", e.target.value)
+                                }
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                isFocused={true}
+                            />
+                            <InputError
+                                message={errors.position}
+                                className="mt-2"
+                            />
+                            {/*
                             <TextInput
                                 id="position"
                                 type="text"
@@ -116,12 +144,9 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
                                 onChange={(e) =>
                                     setData("position", e.target.value)
                                 }
-                            />
+                            /> */}
                         </div>
-                        <InputError
-                            message={errors.position}
-                            className="mt-2"
-                        />
+
                         <div>
                             <InputLabel value="Office" />
                             <TextInput
@@ -145,9 +170,9 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
                                 type="text"
                                 value={data.role}
                                 className="mt-1 block w-full"
-                                autoComplete="office"
+                                autoComplete="role"
                                 isFocused={true}
-                                placeholder="Enter office"
+                                placeholder="Enter role"
                                 onChange={(e) =>
                                     setData("role", e.target.value)
                                 }
@@ -196,7 +221,6 @@ const CreateUser = ({ auth, success, status, canResetPassword }) => {
                         </div>
                     </form>
                 </div>
-                ;
             </AuthenticatedLayout>
         </div>
     );
