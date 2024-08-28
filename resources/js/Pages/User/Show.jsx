@@ -39,7 +39,7 @@ const columns = [
                 editUrl={handleEditLink}
                 deleteUrl={handleDeleteLink}
                 editLabel="Edit"
-                deleteLabel="Remove"
+                deleteLabel="Delete"
             />
         ),
     },
@@ -72,15 +72,14 @@ const Show = ({ auth, data }) => {
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">User</h1>
                     <div className="flex  md:justify-end sm:justify-start mb-1">
-                        <div className="flex justify-center bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md  text-center space-x-3">
-                            <div>
+                        <div>
+                            <Link
+                                href={route("user.create")}
+                                className="flex  flex-row justify-center gap-2 bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md  text-center  "
+                            >
                                 <CirclePlus />
-                            </div>
-                            <div>
-                                <Link href={route("user.create")}>
-                                    <span>Add New User</span>
-                                </Link>
-                            </div>
+                                <span>Add New User</span>
+                            </Link>
                         </div>
                     </div>
                     <div className="relative">
