@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "@inertiajs/react";
-import TextInput from "@/Components/TextInput";
-import InputLabel from "@/Components/InputLabel";
-import InputError from "@/Components/InputError";
 import Modal from "@/Components/Modal";
 import DangerButton from "../../Components/DangerButton";
 import DefaultButton from "../../Components/DefaultButton";
+import { Trash } from "lucide-react";
 const DeletePositionForm = ({ position }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { delete: deleteRequest, processing } = useForm();
@@ -23,10 +21,10 @@ const DeletePositionForm = ({ position }) => {
     return (
         <div>
             <button
-                className="bg-red-600 text-white py-2 px-4 rounded"
+                className="flex gap-2 bg-red-600 text-white py-2 px-4 rounded"
                 onClick={() => setIsOpen(true)}
             >
-                Delete
+                <Trash size={16} /> Delete
             </button>
 
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
@@ -36,7 +34,7 @@ const DeletePositionForm = ({ position }) => {
                             Are you sure you want to delete this item?
                         </strong>
                         <span>
-                            This will delete this item permanently. You cannot
+                            This will delete the item permanently. You cannot
                             undo this action.
                         </span>
                     </div>
