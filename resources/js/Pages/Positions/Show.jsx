@@ -18,7 +18,7 @@ const columns = [
     {
         name: "Action",
         selector: (row) => (
-            <div className="flex lg:flex-row flex-col py-2 gap-2">
+            <div className="flex lg:flex-row flex-col py-2 gap-5">
                 <EditPositionForm position={row} />
                 <DeletePositionForm position={row} />
             </div>
