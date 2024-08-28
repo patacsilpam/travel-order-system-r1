@@ -6,6 +6,9 @@ import InputError from "@/Components/InputError";
 import Modal from "@/Components/Modal";
 import SuccessButton from "../../Components/SuccessButton";
 import DefaultButton from "../../Components/DefaultButton";
+import { Link } from "@inertiajs/react";
+import { FilePenLine } from "lucide-react";
+
 const EditPositionForm = ({ position }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data, setData, put, processing, errors } = useForm({
@@ -21,10 +24,10 @@ const EditPositionForm = ({ position }) => {
     return (
         <div>
             <button
-                className="bg-green-600 text-white py-2 px-4 rounded"
+                className="flex gap-2 bg-green-600 text-white py-2 px-4 rounded"
                 onClick={() => setIsOpen(true)}
             >
-                Edit
+                <FilePenLine size={16} /> Edit
             </button>
 
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
