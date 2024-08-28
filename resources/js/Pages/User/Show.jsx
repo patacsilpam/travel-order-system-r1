@@ -7,10 +7,10 @@ import { CirclePlus } from "lucide-react";
 const handleEditLink = (row) => `user/edit/${row.id}`;
 const handleDeleteLink = (row) => `/delete/${row.id}`;
 const columns = [
-    {
+    /*{
         id: "Number",
         selector: (row) => row.id,
-    },
+    },*/
     {
         name: "Name",
         selector: (row) => `${row.first_name} ${row.last_name}`,
@@ -54,7 +54,7 @@ const customStyles = {
     },
     cells: {
         style: {
-            fontSize: "1.1rem",
+            fontSize: "1rem",
             padding: "1rem",
         },
     },
