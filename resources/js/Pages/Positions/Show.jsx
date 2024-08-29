@@ -33,8 +33,12 @@ const customStyles = {
         },
     },
 };
-
-const Show = ({ auth, data }) => {
+const positionOptions = positions.map((position) => ({
+    value: position.name,
+    label: position.name,
+}));
+const Show = ({ auth, data, position }) => {
+    console.log("positionOptions");
     return (
         <div>
             <AuthenticatedLayout

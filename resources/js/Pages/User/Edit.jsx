@@ -6,7 +6,15 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-const EditUser = ({ auth, user, success, status, canResetPassword }) => {
+import SelectDropdown from "@/Components/SelectDropdown";
+const EditUser = ({
+    auth,
+    user,
+    success,
+    status,
+    canResetPassword,
+    positions,
+}) => {
     const { data, setData, put, processing, errors } = useForm({
         id: user.id || "",
         user_id: user.user_id || "",
@@ -19,6 +27,10 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
         password: user.password || "",
         // Add other fields as needed
     });
+    const positionOptions = positions.map((position) => ({
+        value: position.name,
+        label: position.name,
+    }));
     function updateUser(e) {
         e.preventDefault();
         put(`/user/edit/${user.id}`);
@@ -82,17 +94,18 @@ const EditUser = ({ auth, user, success, status, canResetPassword }) => {
                         </div>
                         <div>
                             <InputLabel value="Position" />
-                            <TextInput
-                                id="position"
-                                type="text"
+                            <SelectDropdown
+                                options={positionOptions}
                                 value={data.position}
-                                className="mt-1 block w-full"
-                                autoComplete="position"
-                                isFocused={true}
-                                placeholder="Enter position"
                                 onChange={(e) =>
                                     setData("position", e.target.value)
                                 }
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                isFocused={true}
+                            />
+                            <InputError
+                                message={errors.position}
+                                className="mt-2"
                             />
                         </div>
                         <InputError

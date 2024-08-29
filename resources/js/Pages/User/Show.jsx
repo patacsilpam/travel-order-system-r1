@@ -1,16 +1,18 @@
 import { Head, Link } from "@inertiajs/react";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { CirclePlus } from "lucide-react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ActionLinks from "@/Components/ActionLinks";
-import { CirclePlus } from "lucide-react";
+import Delete from "./Delete";
+import { customStyles } from "@/data/globals";
+
+// Helper functions for action links
 const handleEditLink = (row) => `user/edit/${row.id}`;
 const handleDeleteLink = (row) => `/delete/${row.id}`;
+
+// DataTable columns definition
 const columns = [
-    /*{
-        id: "Number",
-        selector: (row) => row.id,
-    },*/
     {
         name: "Name",
         selector: (row) => `${row.first_name} ${row.last_name}`,
@@ -34,31 +36,21 @@ const columns = [
     {
         name: "Action",
         cell: (row) => (
-            <ActionLinks
-                row={row}
-                editUrl={handleEditLink}
-                deleteUrl={handleDeleteLink}
-                editLabel="Edit"
-                deleteLabel="Delete"
-            />
+            <div className="flex lg:flex-row flex-col gap-2 ">
+                {console.log(row)}
+                <ActionLinks
+                    row={row}
+                    editUrl={handleEditLink}
+                    deleteUrl={handleDeleteLink}
+                    editLabel="Edit"
+                    deleteLabel="Delete"
+                />
+                <Delete user={row} />
+            </div>
         ),
     },
 ];
 
-const customStyles = {
-    headCells: {
-        style: {
-            fontSize: "1rem",
-            fontWeigth: "900",
-        },
-    },
-    cells: {
-        style: {
-            fontSize: "1rem",
-            padding: "1rem",
-        },
-    },
-};
 const Show = ({ auth, data }) => {
     return (
         <div>

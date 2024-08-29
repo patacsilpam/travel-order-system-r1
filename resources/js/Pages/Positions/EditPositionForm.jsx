@@ -31,7 +31,7 @@ const EditPositionForm = ({ position }) => {
             </button>
 
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
-                <div className="p-6 bg-neutral-100 md:w-full w-[90vw]">
+                <div className="p-6 bg-white md:w-full w-[90vw]">
                     <div className="flex flex-row justify-between">
                         <h2 className="text-lg font-medium text-gray-900">
                             Edit
