@@ -22,7 +22,7 @@ const AddPositionForm = () => {
         <div>
             <button onClick={() => setIsOpen(true)}>Add New Position</button>
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
-                <div className="p-6 bg-neutral-100 md:w-full w-[90vw]">
+                <div className="p-6  md:w-full w-[90vw] bg-white">
                     <div className="flex flex-row justify-between">
                         <h2 className="text-lg font-medium text-gray-900">
                             Add New Position

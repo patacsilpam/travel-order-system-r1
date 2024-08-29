@@ -11,21 +11,13 @@ const ActionLinks = ({
     deleteLabel = "Delete",
 }) => {
     return (
-        <div className="flex lg:flex-row flex-col gap-3">
+        <div className="flex ">
             <Link
                 href={editUrl(row)}
                 className="flex gap-2 bg-green-600 text-white py-2 px-4 rounded"
             >
                 <FilePenLine size={16} />
                 {editLabel}
-            </Link>
-
-            <Link
-                href={deleteUrl(row)}
-                className="flex gap-2  bg-red-600 text-white py-2 px-4 rounded"
-            >
-                <Trash size={16} />
-                {deleteLabel}
             </Link>
         </div>
     );

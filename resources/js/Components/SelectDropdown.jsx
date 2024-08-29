@@ -3,7 +3,7 @@ import React, { forwardRef, useEffect, useRef } from "react";
 const SelectDropdown = forwardRef(function SelectDropdown(
     {
         options = [],
-        defaultValue = "Select a position",
+        defaultValue = "Select",
         className = "",
         isFocused = false,
         ...props
