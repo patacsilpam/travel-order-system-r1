@@ -49,8 +49,8 @@ class UserController extends Controller
 
     public function editForm($id){
         $user = User::findOrFail($id);
-        $positions = Position::all();
-        return Inertia::render('User/Edit',['user' => $user]);
+        $positions = Position::orderBy('name', 'asc')->get();
+        return Inertia::render('User/Edit',['user' => $user,'positions' => $positions]);
     }
     public function edit(Request $request,$id){
         // Validate the incoming request data
@@ -82,5 +82,11 @@ class UserController extends Controller
         }
         // Redirect back with a success message
         return redirect()->back()->with('success', 'User updated successfully.');
+    }
+    //delete user
+    public function destroy($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully.');
     }
 }
