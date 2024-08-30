@@ -32,6 +32,7 @@ const CreateUser = ({ auth, success, status, canResetPassword, positions }) => {
     const toggleVisibility = () => {
         setIsOpen(!isOpen);
     };
+    console.log(positionOptions);
     const { flash } = usePage().props;
     return (
         <div>
