@@ -1,7 +1,6 @@
 import { Head, Link } from "@inertiajs/react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
-import { CirclePlus } from "lucide-react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Create from "./Create";
 const columns = [
@@ -40,12 +39,7 @@ const customStyles = {
     },
 };
 
-const Show = ({ auth, position }) => {
-    const positionOptions = position.map((position) => ({
-        value: position.name,
-        label: position.name,
-    }));
-    console.log(positionOptions);
+const Show = ({ auth, users }) => {
     return (
         <div>
             <AuthenticatedLayout
@@ -58,7 +52,7 @@ const Show = ({ auth, position }) => {
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">Offices</h1>
                     <div className="flex  md:justify-end sm:justify-start mb-1">
-                        <Create />
+                        <Create users={users} />
                     </div>
                     <div className="relative">
                         <DataTableExtensions
