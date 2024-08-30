@@ -17,7 +17,6 @@ const DeletePositionForm = ({ position }) => {
             },
         });
     }
-    console.log(position.id);
     return (
         <div>
             <button
