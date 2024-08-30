@@ -9,7 +9,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import SelectDropdown from "@/Components/SelectDropdown";
 import Modal from "@/Components/Modal";
 
-const CreateUser = ({ auth, success, status, canResetPassword, position }) => {
+const AddNewOffice = ({ auth, success, status, canResetPassword, users }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data, setData, post, processing, errors } = useForm({
         office: "",
@@ -18,7 +18,15 @@ const CreateUser = ({ auth, success, status, canResetPassword, position }) => {
 
     function submitOffice() {
         e.preventDefault();
+        post(`/division`, {
+            onSuccess: () => setIsOpen(false), // Close the modal on success
+        });
     }
+    const userOptions = users.map((user) => ({
+        value: `${user.first_name} ${user.last_name}`,
+        label: `${user.first_name} ${user.last_name}`,
+    }));
+
     return (
         <div>
             <button
@@ -73,16 +81,20 @@ const CreateUser = ({ auth, success, status, canResetPassword, position }) => {
                         <div>
                             <InputLabel value="Select Head" />
                             <SelectDropdown
+                                options={userOptions}
                                 value={data.head}
                                 onChange={(e) =>
-                                    setData("position", e.target.value)
+                                    setData("head", e.target.value)
                                 }
                                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                                 isFocused={true}
                             />
-                            <InputError message={data.head} className="mt-2" />
+                            <InputError
+                                message={errors.head}
+                                className="mt-2"
+                            />
                         </div>
-                        <div className="mt-7 flex justify-center">
+                        <div className="mt-10 flex justify-center">
                             <PrimaryButton
                                 className="w-full"
                                 disabled={processing}
@@ -97,4 +109,4 @@ const CreateUser = ({ auth, success, status, canResetPassword, position }) => {
     );
 };
 
-export default CreateUser;
+export default AddNewOffice;
