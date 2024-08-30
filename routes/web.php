@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 //divisions (offices) 
 Route::middleware('auth')->group(function () {
     Route::get('/division', [DivisionController::class,'show'])->name('division.show');
-    Route::get('/division/create', [DivisionController::class,'create'])->name('division.create');
+    Route::post('/division', [DivisionController::class,'create'])->name('division');
 });
 
 //positions
