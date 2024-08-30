@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm, usePage, router } from "@inertiajs/react";
-import { Head, Link } from "@inertiajs/react";
 import { CirclePlus } from "lucide-react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
@@ -12,21 +11,22 @@ import Modal from "@/Components/Modal";
 const AddNewOffice = ({ auth, success, status, canResetPassword, users }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data, setData, post, processing, errors } = useForm({
-        office: "",
-        head: "",
+        office_id: "",
+        name: "",
+        office_head: "",
     });
 
-    function submitOffice() {
+    function submitOffice(e) {
         e.preventDefault();
         post(`/division`, {
             onSuccess: () => setIsOpen(false), // Close the modal on success
         });
+        // Close the modal on succes);
     }
     const userOptions = users.map((user) => ({
         value: `${user.first_name} ${user.last_name}`,
         label: `${user.first_name} ${user.last_name}`,
     }));
-
     return (
         <div>
             <button
@@ -64,17 +64,17 @@ const AddNewOffice = ({ auth, success, status, canResetPassword, users }) => {
                             <TextInput
                                 id="office"
                                 type="text"
-                                value={data.office}
+                                value={data.name}
                                 className="mt-1 block w-full"
                                 autoComplete="office"
                                 isFocused={true}
                                 placeholder="Enter office"
                                 onChange={(e) =>
-                                    setData("office", e.target.value)
+                                    setData("name", e.target.value)
                                 }
                             />
                             <InputError
-                                message={errors.office}
+                                message={errors.name}
                                 className="mt-2"
                             />
                         </div>
@@ -82,15 +82,15 @@ const AddNewOffice = ({ auth, success, status, canResetPassword, users }) => {
                             <InputLabel value="Select Head" />
                             <SelectDropdown
                                 options={userOptions}
-                                value={data.head}
+                                value={data.office_head}
                                 onChange={(e) =>
-                                    setData("head", e.target.value)
+                                    setData("office_head", e.target.value)
                                 }
                                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                                 isFocused={true}
                             />
                             <InputError
-                                message={errors.head}
+                                message={errors.office_head}
                                 className="mt-2"
                             />
                         </div>
