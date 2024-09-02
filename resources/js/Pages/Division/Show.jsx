@@ -3,43 +3,36 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Create from "./Create";
+import EditOfficeForm from "./EditDivisionForm";
+import DeleteDivisionForm from "./DeleteDivisionForm";
+import { customStyles } from "@/data/globals";
+
 const columns = [
     {
         id: "Number",
         selector: (row) => row.id,
     },
     {
-        name: "Title",
-        selector: (row) => row.title,
+        name: "Office/Division",
+        selector: (row) => row.name,
     },
     {
-        name: "Year",
-        selector: (row) => row.year,
+        name: "Head",
+        selector: (row) => row.office_head,
+    },
+    {
+        name: "Action",
+        selector: (row) => (
+            <div className="flex lg:flex-row flex-col py-2 gap-5">
+                <EditOfficeForm />
+                <DeleteDivisionForm />
+            </div>
+        ),
     },
 ];
 
-const data = [
-    {
-        id: 1,
-        title: "Beetlejuice",
-        year: "1988",
-    },
-    {
-        id: 2,
-        title: "Ghostbusters",
-        year: "1984",
-    },
-];
-const customStyles = {
-    headCells: {
-        style: {
-            fontSize: "1rem",
-            fontWeigth: "900",
-        },
-    },
-};
-
-const Show = ({ auth, users }) => {
+const Show = ({ auth, users, office }) => {
+    console.log(office);
     return (
         <div>
             <AuthenticatedLayout
@@ -52,12 +45,13 @@ const Show = ({ auth, users }) => {
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">Offices</h1>
                     <div className="flex  md:justify-end sm:justify-start mb-1">
+                        {/**ADD NEW USER */}
                         <Create users={users} />
                     </div>
                     <div className="relative">
                         <DataTableExtensions
                             columns={columns}
-                            data={data}
+                            data={office}
                             print={false}
                             export={false}
                         >
