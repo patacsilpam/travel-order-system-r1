@@ -24,7 +24,7 @@ const columns = [
         name: "Action",
         selector: (row) => (
             <div className="flex lg:flex-row flex-col py-2 gap-5">
-                <EditOfficeForm />
+                <EditOfficeForm office={row} />
                 <DeleteDivisionForm />
             </div>
         ),
