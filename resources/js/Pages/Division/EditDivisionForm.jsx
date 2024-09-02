@@ -9,14 +9,13 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import SelectDropdown from "@/Components/SelectDropdown";
 import Modal from "@/Components/Modal";
 
-const EditOfficeForm = ({ auth, success, status }) => {
+const EditOfficeForm = ({ auth, success, status, office }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data, setData, post, processing, errors } = useForm({
         office_id: "",
-        name: "",
-        office_head: "",
+        name: office.name || "",
+        office_head: office.office_head || "",
     });
-
     function submitOffice(e) {
         e.preventDefault();
         post(`/division`, {
@@ -24,6 +23,7 @@ const EditOfficeForm = ({ auth, success, status }) => {
         });
         // Close the modal on succes);
     }
+
     return (
         <div>
             <button
