@@ -8,7 +8,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import SelectDropdown from "@/Components/SelectDropdown";
 import Modal from "@/Components/Modal";
 
-const AddNewOffice = ({ auth, success, status, canResetPassword, users }) => {
+const AddNewOffice = ({ status, users }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { data, setData, post, processing, errors } = useForm({
         office_id: "",
