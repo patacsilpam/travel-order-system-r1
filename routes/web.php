@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/division', [DivisionController::class,'show'])->name('division.show');
     Route::post('/division', [DivisionController::class,'create'])->name('division');
+    Route::post('/division/edit/{id}', [DivisionController::class,'edit'])->name('division.edit');
 });
 
 //positions
