@@ -79,8 +79,25 @@ const AddNewOffice = ({ status, users }) => {
                             />
                         </div>
                         <div>
-                            <InputLabel value="Select Head" />
-                            <SelectDropdown
+                            <InputLabel value="Enter Division/Office Head" />
+                            <TextInput
+                                id="office"
+                                type="text"
+                                value={data.office_head}
+                                className="mt-1 block w-full"
+                                autoComplete="office"
+                                isFocused={true}
+                                placeholder="(e.g. Juan Dela Cruz)"
+                                onChange={(e) =>
+                                    setData("office_head", e.target.value)
+                                }
+                            />
+                            <InputError
+                                message={errors.office_head}
+                                className="mt-2"
+                            />
+                            {/**
+                                <SelectDropdown
                                 options={userOptions}
                                 value={data.office_head}
                                 onChange={(e) =>
@@ -89,10 +106,7 @@ const AddNewOffice = ({ status, users }) => {
                                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                                 isFocused={true}
                             />
-                            <InputError
-                                message={errors.office_head}
-                                className="mt-2"
-                            />
+                             */}
                         </div>
                         <div className="mt-10 flex justify-center">
                             <PrimaryButton
