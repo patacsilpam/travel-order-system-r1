@@ -7,8 +7,8 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SelectDropdown from "@/Components/SelectDropdown";
-import FlashMessage from "@/Components/FlashMessage";
-const CreateUser = ({ auth, success, status, canResetPassword, positions }) => {
+import { roles } from "@/data/globals";
+const CreateUser = ({ auth, status, positions }) => {
     const { data, setData, post, processing, errors } = useForm({
         firstName: "",
         lastName: "",
@@ -24,16 +24,23 @@ const CreateUser = ({ auth, success, status, canResetPassword, positions }) => {
             onSuccess: () => {},
         });
     }
+    const [isOpen, setIsOpen] = useState(true);
+    const { flash } = usePage().props;
+
+    const toggleVisibility = () => {
+        setIsOpen(!isOpen);
+    };
+
     const positionOptions = positions.map((position) => ({
         value: position.name,
         label: position.name,
     }));
-    const [isOpen, setIsOpen] = useState(true);
-    const toggleVisibility = () => {
-        setIsOpen(!isOpen);
-    };
-    console.log(positionOptions);
-    const { flash } = usePage().props;
+
+    const roleOptions = roles.map((role) => ({
+        value: role.title,
+        label: role.title,
+    }));
+
     return (
         <div>
             <AuthenticatedLayout
@@ -162,24 +169,29 @@ const CreateUser = ({ auth, success, status, canResetPassword, positions }) => {
                                     setData("office", e.target.value)
                                 }
                             />
+                            <InputError
+                                message={errors.office}
+                                className="mt-2"
+                            />
                         </div>
-                        <InputError message={errors.office} className="mt-2" />
+
                         <div>
-                            <InputLabel value="Role" />
-                            <TextInput
-                                id="rolde"
-                                type="text"
+                            <InputLabel value="Select Role" />
+                            <SelectDropdown
+                                options={roleOptions}
                                 value={data.role}
-                                className="mt-1 block w-full"
-                                autoComplete="role"
-                                isFocused={true}
-                                placeholder="Enter role"
                                 onChange={(e) =>
                                     setData("role", e.target.value)
                                 }
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                isFocused={true}
+                            />
+                            <InputError
+                                message={errors.role}
+                                className="mt-2"
                             />
                         </div>
-                        <InputError message={errors.role} className="mt-2" />
+
                         <div>
                             <InputLabel value="Email Address" />
                             <TextInput
