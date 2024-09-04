@@ -3,15 +3,11 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Create from "./Create";
-import EditOfficeForm from "./EditDivisionForm";
-import DeleteDivisionForm from "./DeleteDivisionForm";
+import Edit from "./Edit";
+import Delete from "./Delete";
 import { customStyles } from "@/data/globals";
 
 const columns = [
-    {
-        id: "Number",
-        selector: (row) => row.id,
-    },
     {
         name: "Office/Division",
         selector: (row) => row.name,
@@ -24,15 +20,13 @@ const columns = [
         name: "Action",
         selector: (row) => (
             <div className="flex lg:flex-row flex-col py-2 gap-5">
-                <EditOfficeForm office={row} />
-                <DeleteDivisionForm />
+                <Edit office={row} />
+                <Delete office={row} />
             </div>
         ),
     },
 ];
-
 const Show = ({ auth, users, office }) => {
-    console.log(office);
     return (
         <div>
             <AuthenticatedLayout
@@ -45,7 +39,7 @@ const Show = ({ auth, users, office }) => {
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">Offices</h1>
                     <div className="flex  md:justify-end sm:justify-start mb-1">
-                        {/**ADD NEW USER */}
+                        {/**ADD NEW USER:: {users} variable (fetch the data) */}
                         <Create users={users} />
                     </div>
                     <div className="relative">
