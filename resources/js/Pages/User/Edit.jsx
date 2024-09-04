@@ -7,6 +7,7 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SelectDropdown from "@/Components/SelectDropdown";
+import { roles } from "@/data/globals";
 const EditUser = ({
     auth,
     user,
@@ -30,6 +31,10 @@ const EditUser = ({
     const positionOptions = positions.map((position) => ({
         value: position.name,
         label: position.name,
+    }));
+    const roleOptions = roles.map((role) => ({
+        value: role.title,
+        label: role.title,
     }));
     function updateUser(e) {
         e.preventDefault();
@@ -129,18 +134,19 @@ const EditUser = ({
                         </div>
                         <InputError message={errors.office} className="mt-2" />
                         <div>
-                            <InputLabel value="Role" />
-                            <TextInput
-                                id="role"
-                                type="text"
+                            <InputLabel value="Select Role" />
+                            <SelectDropdown
+                                options={roleOptions}
                                 value={data.role}
-                                className="mt-1 block w-full"
-                                autoComplete="role"
-                                isFocused={true}
-                                placeholder="Enter Role"
                                 onChange={(e) =>
                                     setData("role", e.target.value)
                                 }
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                isFocused={true}
+                            />
+                            <InputError
+                                message={errors.role}
+                                className="mt-2"
                             />
                         </div>
                         <InputError message={errors.role} className="mt-2" />
