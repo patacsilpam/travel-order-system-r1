@@ -34,7 +34,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/division', [DivisionController::class,'show'])->name('division.show');
     Route::post('/division', [DivisionController::class,'create'])->name('division');
-    Route::post('/division/edit/{id}', [DivisionController::class,'edit'])->name('division.edit');
+    Route::get('/division/edit/{id}', [DivisionController::class,'editForm'])->name('division.edit');
+    Route::put('/division/edit/{id}', [DivisionController::class,'edit'])->name('division.edit');
+    Route::delete('/division/delete/{id}', [DivisionController::class, 'destroy'])->name('division.delete');
 });
 
 //positions
