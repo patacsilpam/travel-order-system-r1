@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { CirclePlus } from "lucide-react";
-import AddPositionForm from "@/Components/AddPositionForm";
+import AddPositionForm from "./AddPositionForm";
 import EditPositionForm from "./EditPositionForm";
 import DeletePositionForm from "./DeletePositionForm";
 const columns = [

@@ -4,39 +4,29 @@ import TextInput from "@/Components/TextInput";
 import InputLabel from "@/Components/InputLabel";
 import InputError from "@/Components/InputError";
 import Modal from "@/Components/Modal";
-import SuccessButton from "../../Components/SuccessButton";
-import DefaultButton from "../../Components/DefaultButton";
-import { Link } from "@inertiajs/react";
-import { FilePenLine } from "lucide-react";
-
-const EditPositionForm = ({ position }) => {
+import PrimaryButton from "@/Components/PrimaryButton";
+const AddPositionForm = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { data, setData, put, processing, errors } = useForm({
-        name: position.name || "",
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
     });
-
     function submitPosition(e) {
         e.preventDefault(); // Prevent the default form submission
-        put(`/positions/${position.id}/edit`, {
+        post(`/positions`, {
             onSuccess: () => setIsOpen(false), // Close the modal on success
         });
     }
     return (
         <div>
             {/*Button to trigger the modal */}
-            <button
-                className="flex gap-2 bg-green-600 text-white py-2 px-4 rounded"
-                onClick={() => setIsOpen(true)}
-            >
-                <FilePenLine size={16} /> Edit
-            </button>
-            {/*Button to trigger the modal */}
+            <button onClick={() => setIsOpen(true)}>Add New Position</button>
+            {/*Modal */}
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
-                <div className="p-6 bg-white md:w-full w-[90vw]">
+                <div className="p-6  md:w-full w-[90vw] bg-white">
                     <div className="flex flex-row justify-between">
                         {/*Title */}
                         <h2 className="text-lg font-medium text-gray-900">
-                            Edit
+                            Add New Position
                         </h2>
                         {/**Close Button */}
                         <button
@@ -54,22 +44,22 @@ const EditPositionForm = ({ position }) => {
                         <TextInput
                             id="name"
                             type="text"
+                            value={data.name}
                             className="mt-1 block w-full"
                             autoComplete="name"
                             isFocused={true}
                             placeholder="Enter Position"
-                            value={data.name}
-                            onChange={(e) => setData("name", e.target.value)} // Update the data state
+                            onChange={(e) => setData("name", e.target.value)}
                         />
                         <InputError message={errors.name} className="mt-2" />
+                        {/**Button*/}
                         <div className="mt-5 flex justify-center">
-                            {/**Button*/}
-                            <SuccessButton
+                            <PrimaryButton
                                 className="w-full"
                                 disabled={processing}
                             >
-                                Save Changes
-                            </SuccessButton>
+                                Submit
+                            </PrimaryButton>
                         </div>
                     </form>
                 </div>
@@ -78,4 +68,4 @@ const EditPositionForm = ({ position }) => {
     );
 };
 
-export default EditPositionForm;
+export default AddPositionForm;
