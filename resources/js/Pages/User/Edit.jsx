@@ -4,18 +4,11 @@ import { Head, Link } from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
+import SuccessButton from "@/Components/SuccessButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SelectDropdown from "@/Components/SelectDropdown";
 import { roles } from "@/data/globals";
-const EditUser = ({
-    auth,
-    user,
-    success,
-    status,
-    canResetPassword,
-    positions,
-}) => {
+const EditUser = ({ auth, user, positions, offices }) => {
     const { data, setData, put, processing, errors } = useForm({
         id: user.id || "",
         user_id: user.user_id || "",
@@ -26,7 +19,6 @@ const EditUser = ({
         role: user.role || "",
         email: user.email || "",
         password: user.password || "",
-        // Add other fields as needed
     });
     const positionOptions = positions.map((position) => ({
         value: position.name,
@@ -35,6 +27,10 @@ const EditUser = ({
     const roleOptions = roles.map((role) => ({
         value: role.title,
         label: role.title,
+    }));
+    const officeOptions = offices.map((office) => ({
+        value: office.name,
+        label: office.name,
     }));
     function updateUser(e) {
         e.preventDefault();
@@ -51,14 +47,16 @@ const EditUser = ({
             >
                 <Head title={`Edit User`} />
                 <div className="flex flex-col py-7 m-10 ">
+                    {/*Title */}
                     <h1 className="text-4xl font-bold my-5">
                         Update User Information
                     </h1>
+                    {/*Form */}
                     <form
                         onSubmit={updateUser}
                         className=" bg-white shadow-sm rounded-md space-y-5 p-5"
                     >
-                        <p>{data.password}</p>
+                        {/**Field for First Name */}
                         <div>
                             <InputLabel value="First Name" />
                             <TextInput
@@ -78,6 +76,7 @@ const EditUser = ({
                                 className="mt-2"
                             />
                         </div>
+                        {/**Field for Last Name */}
                         <div>
                             <InputLabel value="Last Name" />
                             <TextInput
@@ -97,6 +96,7 @@ const EditUser = ({
                                 className="mt-2"
                             />
                         </div>
+                        {/**Field for Employee Position */}
                         <div>
                             <InputLabel value="Position" />
                             <SelectDropdown
@@ -113,26 +113,24 @@ const EditUser = ({
                                 className="mt-2"
                             />
                         </div>
-                        <InputError
-                            message={errors.position}
-                            className="mt-2"
-                        />
+                        {/**Field for Employee Designated Office */}
                         <div>
                             <InputLabel value="Office" />
-                            <TextInput
-                                id="office"
-                                type="text"
+                            <SelectDropdown
+                                options={officeOptions}
                                 value={data.office}
-                                className="mt-1 block w-full"
-                                autoComplete="office"
-                                isFocused={true}
-                                placeholder="Enter office"
                                 onChange={(e) =>
                                     setData("office", e.target.value)
                                 }
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                isFocused={true}
+                            />
+                            <InputError
+                                message={errors.office}
+                                className="mt-2"
                             />
                         </div>
-                        <InputError message={errors.office} className="mt-2" />
+                        {/**Field for Employee (User role) */}
                         <div>
                             <InputLabel value="Select Role" />
                             <SelectDropdown
@@ -149,7 +147,7 @@ const EditUser = ({
                                 className="mt-2"
                             />
                         </div>
-                        <InputError message={errors.role} className="mt-2" />
+                        {/**Field for Employee email address */}
                         <div>
                             <InputLabel value="Email Address" />
                             <TextInput
@@ -169,6 +167,7 @@ const EditUser = ({
                                 className="mt-2"
                             />
                         </div>
+                        {/**Field for Employee Password */}
                         <div>
                             <InputLabel value="Password" />
                             <TextInput
@@ -188,10 +187,11 @@ const EditUser = ({
                                 className="mt-2"
                             />
                         </div>
+                        {/**Button */}
                         <div className="text-center mt-5">
-                            <PrimaryButton disabled={processing}>
+                            <SuccessButton disabled={processing}>
                                 <p className="w-50">Save Changes</p>
-                            </PrimaryButton>
+                            </SuccessButton>
                         </div>
                     </form>
                 </div>

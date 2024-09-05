@@ -64,6 +64,7 @@ const Show = ({ auth, data }) => {
                 <div className="m-5">
                     <h1 className="text-4xl font-bold my-5">User</h1>
                     <div className="flex  md:justify-end sm:justify-start mb-1">
+                        {/*Link for Adding New User */}
                         <div>
                             <Link
                                 href={route("user.create")}
@@ -75,6 +76,7 @@ const Show = ({ auth, data }) => {
                         </div>
                     </div>
                     <div className="relative">
+                        {/**User Table */}
                         <DataTableExtensions
                             columns={columns}
                             data={data}

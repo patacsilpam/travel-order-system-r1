@@ -8,7 +8,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SelectDropdown from "@/Components/SelectDropdown";
 import { roles } from "@/data/globals";
-const CreateUser = ({ auth, status, positions }) => {
+const CreateUser = ({ auth, status, positions, offices }) => {
     const { data, setData, post, processing, errors } = useForm({
         firstName: "",
         lastName: "",
@@ -35,12 +35,14 @@ const CreateUser = ({ auth, status, positions }) => {
         value: position.name,
         label: position.name,
     }));
-
     const roleOptions = roles.map((role) => ({
         value: role.title,
         label: role.title,
     }));
-
+    const officeOptions = offices.map((office) => ({
+        value: office.name,
+        label: office.name,
+    }));
     return (
         <div>
             <AuthenticatedLayout
@@ -50,6 +52,7 @@ const CreateUser = ({ auth, status, positions }) => {
                 }
             >
                 <Head title="Add User" />
+                {/*Flash Message*/}
                 <div className="m-3">
                     {flash.message && (
                         <div
@@ -82,11 +85,14 @@ const CreateUser = ({ auth, status, positions }) => {
                             {status}
                         </div>
                     )}
+                    {/*Title*/}
                     <h1 className="text-4xl font-bold my-5">Add New User</h1>
+                    {/*Form*/}
                     <form
                         onSubmit={submitUser}
                         className=" bg-white shadow-sm rounded-md space-y-5 p-5"
                     >
+                        {/**Field for First Name */}
                         <div>
                             <InputLabel value="First Name" />
                             <TextInput
@@ -106,6 +112,7 @@ const CreateUser = ({ auth, status, positions }) => {
                                 className="mt-2"
                             />
                         </div>
+                        {/**Field for Last Name */}
                         <div>
                             <InputLabel value="Last Name" />
                             <TextInput
@@ -120,11 +127,12 @@ const CreateUser = ({ auth, status, positions }) => {
                                     setData("lastName", e.target.value)
                                 }
                             />
+                            <InputError
+                                message={errors.lastName}
+                                className="mt-2"
+                            />
                         </div>
-                        <InputError
-                            message={errors.lastName}
-                            className="mt-2"
-                        />
+                        {/**Field for Employee Position */}
                         <div>
                             <InputLabel value="Position" />
                             <SelectDropdown
@@ -140,41 +148,25 @@ const CreateUser = ({ auth, status, positions }) => {
                                 message={errors.position}
                                 className="mt-2"
                             />
-                            {/*
-                            <TextInput
-                                id="position"
-                                type="text"
-                                value={data.position}
-                                className="mt-1 block w-full"
-                                autoComplete="position"
-                                isFocused={true}
-                                placeholder="Enter position"
-                                onChange={(e) =>
-                                    setData("position", e.target.value)
-                                }
-                            /> */}
                         </div>
-
+                        {/**Field for Employee Designated Office */}
                         <div>
                             <InputLabel value="Office" />
-                            <TextInput
-                                id="office"
-                                type="text"
+                            <SelectDropdown
+                                options={officeOptions}
                                 value={data.office}
-                                className="mt-1 block w-full"
-                                autoComplete="office"
-                                isFocused={true}
-                                placeholder="Enter office"
                                 onChange={(e) =>
                                     setData("office", e.target.value)
                                 }
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                isFocused={true}
                             />
                             <InputError
                                 message={errors.office}
                                 className="mt-2"
                             />
                         </div>
-
+                        {/**Field for Employee (User role) */}
                         <div>
                             <InputLabel value="Select Role" />
                             <SelectDropdown
@@ -191,7 +183,7 @@ const CreateUser = ({ auth, status, positions }) => {
                                 className="mt-2"
                             />
                         </div>
-
+                        {/**Field for Employee email address */}
                         <div>
                             <InputLabel value="Email Address" />
                             <TextInput
@@ -206,8 +198,12 @@ const CreateUser = ({ auth, status, positions }) => {
                                     setData("email", e.target.value)
                                 }
                             />
+                            <InputError
+                                message={errors.email}
+                                className="mt-2"
+                            />
                         </div>
-                        <InputError message={errors.email} className="mt-2" />
+                        {/**Field for Employee Password */}
                         <div>
                             <InputLabel value="Password" />
                             <TextInput
@@ -222,11 +218,12 @@ const CreateUser = ({ auth, status, positions }) => {
                                     setData("password", e.target.value)
                                 }
                             />
+                            <InputError
+                                message={errors.password}
+                                className="mt-2"
+                            />
                         </div>
-                        <InputError
-                            message={errors.password}
-                            className="mt-2"
-                        />
+                        {/**Button */}
                         <div className="text-center mt-5">
                             <PrimaryButton disabled={processing}>
                                 <p className="w-50">Add User</p>

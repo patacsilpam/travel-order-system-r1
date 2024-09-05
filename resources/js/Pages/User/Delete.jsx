@@ -20,16 +20,18 @@ const Delete = ({ user }) => {
     }
     return (
         <div>
+            {/**Button to trigger the modal */}
             <button
                 className="flex gap-2 bg-red-600 text-white py-2 px-4 rounded"
                 onClick={() => setIsOpen(true)}
             >
                 <Trash size={16} /> Delete
             </button>
-
+            {/**Modal- */}
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
                 <div className="p-6 bg-neutral-100">
                     <div className="flex flex-col space-y-2">
+                        {/** Alert Message*/}
                         <strong className="text-gray-900 text-xl">
                             Are you sure you want to delete this user?
                         </strong>
@@ -40,6 +42,7 @@ const Delete = ({ user }) => {
                     </div>
                     <div className="flex flex-row justify-center mt-7">
                         <div className="lg:px-3 px-1">
+                            {/** Cancel Button*/}
                             <DefaultButton
                                 onClick={() => setIsOpen(false)}
                                 className="w-full"
@@ -52,6 +55,7 @@ const Delete = ({ user }) => {
                             className="flex flex-row gap-2"
                         >
                             <div className="">
+                                {/** Delete Button*/}
                                 <DangerButton
                                     className="w-full"
                                     disabled={processing}
