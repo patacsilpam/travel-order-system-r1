@@ -15,24 +15,21 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
             }
         >
             <Head title="Profile" />
-
             <div className="py-5 px-5">
                 <div className="flex  flex-col gap-5">
                     <div className="p-4 sm:p-8 bg-white  shadow-sm sm:rounded-sm w-full">
+                        {/*Update Profile Information Component */}
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
                             className=""
                         />
                     </div>
-
                     <div className="p-4 sm:p-8 bg-white  shadow-sm sm:rounded-sm w-full">
+                        {/*Update Password Form Component */}
                         <UpdatePasswordForm className="max-w-xl" />
                     </div>
                 </div>
-                {/** <div className="p-4 sm:p-8 bg-white shadow-sm sm:rounded-sm">
-                    <DeleteUserForm className="max-w-xl" />
-                </div>*/}
             </div>
         </AuthenticatedLayout>
     );

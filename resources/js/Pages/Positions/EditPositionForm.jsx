@@ -30,7 +30,7 @@ const EditPositionForm = ({ position }) => {
             >
                 <FilePenLine size={16} /> Edit
             </button>
-            {/*Button to trigger the modal */}
+            {/*Modal */}
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
                 <div className="p-6 bg-white md:w-full w-[90vw]">
                     <div className="flex flex-row justify-between">

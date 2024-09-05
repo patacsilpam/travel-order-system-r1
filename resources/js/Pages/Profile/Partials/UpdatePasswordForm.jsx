@@ -56,14 +56,14 @@ export default function UpdatePasswordForm({ className = "" }) {
                     secure.
                 </p>
             </header>
-
+            {/**Form for updating user's password*/}
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
+                {/*Field for current password */}
                 <div>
                     <InputLabel
                         htmlFor="current_password"
                         value="Current Password"
                     />
-
                     <TextInput
                         id="current_password"
                         ref={currentPasswordInput}
@@ -81,7 +81,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                         className="mt-2"
                     />
                 </div>
-
+                {/*Field for new password */}
                 <div>
                     <InputLabel htmlFor="password" value="New Password" />
 
@@ -97,7 +97,7 @@ export default function UpdatePasswordForm({ className = "" }) {
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
-
+                {/*Field for password confirmation*/}
                 <div>
                     <InputLabel
                         htmlFor="password_confirmation"
@@ -120,7 +120,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                         className="mt-2"
                     />
                 </div>
-
+                {/*Button*/}
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>
 

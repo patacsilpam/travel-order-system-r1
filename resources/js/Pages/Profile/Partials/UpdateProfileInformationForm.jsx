@@ -36,11 +36,11 @@ export default function UpdateProfileInformation({
                     Update your account's profile information and email address.
                 </p>
             </header>
-
+            {/**Form for updating profile information */}
             <form onSubmit={submit} className="mt-6 space-y-6">
+                {/*Field for first name*/}
                 <div>
                     <InputLabel htmlFor="firstName" value="Name" />
-
                     <TextInput
                         id="name"
                         className="mt-1 block w-full"
@@ -53,6 +53,7 @@ export default function UpdateProfileInformation({
 
                     <InputError className="mt-2" message={errors.first_name} />
                 </div>
+                {/*Field for last name*/}
                 <div>
                     <InputLabel htmlFor="lastName " value="Last Name" />
 
@@ -68,7 +69,7 @@ export default function UpdateProfileInformation({
 
                     <InputError className="mt-2" message={errors.last_name} />
                 </div>
-
+                {/*Field for email address*/}
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 
