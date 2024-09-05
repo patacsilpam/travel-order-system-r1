@@ -132,18 +132,6 @@ const StepOne = ({ formData, setFormData }) => {
                     }
                 />
             </div>
-            <div>
-                <InputLabel value="Source of Fund" />
-                <TextInput
-                    type="text"
-                    placeholder="Source of Fund"
-                    className="container-fluid w-full"
-                    value={formData.dateTo}
-                    onChange={(e) =>
-                        setFormData({ ...formData, dateTo: e.target.value })
-                    }
-                />
-            </div>
         </div>
     );
 };
