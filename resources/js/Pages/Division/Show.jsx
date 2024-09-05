@@ -43,6 +43,7 @@ const Show = ({ auth, users, office }) => {
                         <Create users={users} />
                     </div>
                     <div className="relative">
+                        {/**User Table */}
                         <DataTableExtensions
                             columns={columns}
                             data={office}

@@ -29,6 +29,7 @@ const AddNewOffice = ({ status, users }) => {
     }));
     return (
         <div>
+            {/**Button to trigger the modal */}
             <button
                 onClick={() => setIsOpen(true)}
                 className="flex justify-center bg-blue-600 bg-opacity-90 hover:bg-blue-700 text-white p-2 rounded-md  text-center gap-2 "
@@ -36,17 +37,15 @@ const AddNewOffice = ({ status, users }) => {
                 <CirclePlus />
                 Add New Office
             </button>
+            {/**Modal */}
             <Modal show={isOpen} maxWidth="md" onClose={() => setIsOpen(false)}>
-                {status && (
-                    <div className="mb-4 font-medium text-sm text-green-600">
-                        {status}
-                    </div>
-                )}
                 <div className="p-6  md:w-full w-[90vw] ">
                     <div className="flex flex-row justify-between">
+                        {/**Title */}
                         <h2 className="text-lg font-medium text-gray-900">
                             Add New Office
                         </h2>
+                        {/**Close Button */}
                         <button
                             onClick={() => setIsOpen(false)}
                             className="bg-gray-500 text-neutral-200 h-8 w-8 rounded-full text-md"
@@ -55,10 +54,12 @@ const AddNewOffice = ({ status, users }) => {
                             x
                         </button>
                     </div>
+                    {/**Form */}
                     <form
                         onSubmit={submitOffice}
                         className="shadow-sm rounded-md space-y-3 mt-5"
                     >
+                        {/**Field for Office */}
                         <div>
                             <InputLabel value="Office" />
                             <TextInput
@@ -78,6 +79,7 @@ const AddNewOffice = ({ status, users }) => {
                                 className="mt-2"
                             />
                         </div>
+                        {/**Field for Office Head */}
                         <div>
                             <InputLabel value="Enter Division/Office Head" />
                             <TextInput
@@ -96,18 +98,8 @@ const AddNewOffice = ({ status, users }) => {
                                 message={errors.office_head}
                                 className="mt-2"
                             />
-                            {/**
-                                <SelectDropdown
-                                options={userOptions}
-                                value={data.office_head}
-                                onChange={(e) =>
-                                    setData("office_head", e.target.value)
-                                }
-                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                                isFocused={true}
-                            />
-                             */}
                         </div>
+                        {/**Button */}
                         <div className="mt-10 flex justify-center">
                             <PrimaryButton
                                 className="w-full"
