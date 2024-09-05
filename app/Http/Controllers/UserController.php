@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Office;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,7 +20,8 @@ class UserController extends Controller
     //routes for adding new user
     public function createForm(){
         $positions = Position::orderBy('name', 'asc')->get();
-        return Inertia::render('User/Create',['positions' => $positions]);
+        $offices = Office::orderBy('name', 'asc')->get();
+        return Inertia::render('User/Create',['positions' => $positions, 'offices' => $offices]);
     }
     //submit user
     public function create(Request $request)
@@ -50,7 +52,8 @@ class UserController extends Controller
     public function editForm($id){
         $user = User::findOrFail($id);
         $positions = Position::orderBy('name', 'asc')->get();
-        return Inertia::render('User/Edit',['user' => $user,'positions' => $positions]);
+        $offices = Office::orderBy('name', 'asc')->get();
+        return Inertia::render('User/Edit',['user' => $user,'positions' => $positions, 'offices' => $offices]);
     }
     public function edit(Request $request,$id){
         // Validate the incoming request data
