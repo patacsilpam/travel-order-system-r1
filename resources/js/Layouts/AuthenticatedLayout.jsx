@@ -10,11 +10,14 @@ import {
     Settings,
     Building2,
 } from "lucide-react";
+// Authenticated component that renders the navigation and main content
 export default function Authenticated({ user, header, children }) {
+    // State for toggling the navigation dropdown
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
     return (
         <div className="flex flex-row justify-around  bg-slate-100 overflow-auto">
+            {/* Sidebar navigation */}
             <div
                 className={
                     (showingNavigationDropdown
@@ -23,6 +26,7 @@ export default function Authenticated({ user, header, children }) {
                 }
             >
                 <div className="flex flex-col space-y-24 h-screen">
+                    {/* Logo section */}
                     <div className="flex flex-row items-center p-2 gap-2 w-[300px]">
                         <img src="/images/logo.png" className="w-[60px]" />
                         <div className="text-white">
@@ -30,6 +34,7 @@ export default function Authenticated({ user, header, children }) {
                             <p>TRAVEL ORDER SYSTEM</p>
                         </div>
                     </div>
+                    {/* Navigation links */}
                     <ul className="flex flex-col space-y-3 ">
                         <NavLink
                             href={route("dashboard")}
@@ -55,41 +60,47 @@ export default function Authenticated({ user, header, children }) {
                             <Compass />
                             Travel Orders
                         </NavLink>
-                        <NavLink
-                            href={route("division.show")}
-                            active={route().current("division.show")}
-                            className="gap-2"
-                        >
-                            <Building2 />
-                            Offices
-                        </NavLink>
-                        <NavLink
-                            href={route("positions.show")}
-                            active={route().current("positions.show")}
-                            className="gap-2"
-                        >
-                            <Split />
-                            Positions
-                        </NavLink>
-                        <NavLink
-                            href={route("user.show")}
-                            active={route().current("user.show")}
-                            className="gap-2"
-                        >
-                            <User />
-                            Users
-                        </NavLink>
-                        <NavLink
-                            href={route("settings.show")}
-                            active={route().current("settings.show")}
-                            className="gap-2"
-                        >
-                            <Settings />
-                            Settings
-                        </NavLink>
+                        {/* Conditional rendering for admin-specific links */}
+                        {user?.role === "Administrator" && (
+                            <ul className="flex flex-col space-y-3 ">
+                                <NavLink
+                                    href={route("division.show")}
+                                    active={route().current("division.show")}
+                                    className="gap-2"
+                                >
+                                    <Building2 />
+                                    Offices
+                                </NavLink>
+                                <NavLink
+                                    href={route("positions.show")}
+                                    active={route().current("positions.show")}
+                                    className="gap-2"
+                                >
+                                    <Split />
+                                    Positions
+                                </NavLink>
+                                <NavLink
+                                    href={route("user.show")}
+                                    active={route().current("user.show")}
+                                    className="gap-2"
+                                >
+                                    <User />
+                                    Users
+                                </NavLink>
+                                <NavLink
+                                    href={route("settings.show")}
+                                    active={route().current("settings.show")}
+                                    className="gap-2"
+                                >
+                                    <Settings />
+                                    Settings
+                                </NavLink>
+                            </ul>
+                        )}
                     </ul>
                 </div>
             </div>
+            {/**Hamburger Menu */}
             <div className="w-screen h-screen">
                 <div className="flex flex-row items-center justify-between lg:justify-end p-5 border border-b-gray-300 shadow-sm">
                     <button
@@ -130,6 +141,7 @@ export default function Authenticated({ user, header, children }) {
                             />
                         </svg>
                     </button>
+                    {/* User dropdown and profile information */}
                     <div>
                         <div className="sm:items-center sm:ms-6">
                             <div className="ms-3 relative">
@@ -218,6 +230,7 @@ export default function Authenticated({ user, header, children }) {
                         </div>
                     </div>
                 </div>
+                {/* Main content section */}
                 <main
                     className={`overflow-hidden ${
                         showingNavigationDropdown ? "backdrop-opacity-70" : ""
