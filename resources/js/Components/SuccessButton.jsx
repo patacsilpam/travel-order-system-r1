@@ -1,4 +1,4 @@
-export default function DangerButton({
+export default function SuccessButton({
     className = "",
     disabled,
     children,
