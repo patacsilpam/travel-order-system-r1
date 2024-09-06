@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
-const StepOne = ({ formData, setFormData }) => {
+import InputError from "./InputError";
+const StepOne = ({ data, setData, post, processing, errors }) => {
     const [currentDate, setCurrentDate] = useState("");
 
     useEffect(() => {
@@ -20,27 +21,33 @@ const StepOne = ({ formData, setFormData }) => {
             {/**MODE OF FILING */}
             <div className="space-x-4">
                 <InputLabel value="Mode of Filing" className="mb-3" />
-                <div className="flex md:flex-row flex-col lg:space-y-0 space-y-1 sm:space-x-3">
-                    <div className="flex items-center border -1 border-neutral-300 p-2 rounded-sm hover:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
+                <div className="flex md:flex-row flex-col ">
+                    <div className="flex items-center border -1 mx-2 md:my-0 my-1 border-neutral-300 p-2 rounded-sm hover:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
                         <input
                             id="immediate"
                             type="radio"
                             name="modeFiling"
                             value="immediate"
+                            onChange={(e) =>
+                                setData("modeFiling", e.target.value)
+                            }
                         />
                         <label
                             htmlFor="immediate"
-                            className="ml-2 text-sm font-medium text-gray-900"
+                            className="ml-2 text-sm font-medium text-gray-900  "
                         >
                             Immediate
                         </label>
                     </div>
-                    <div className="flex items-center border -1 border-neutral-300 p-2 rounded-sm hover:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
+                    <div className="flex items-center border -1 mx-2 border-neutral-300 p-2 rounded-sm hover:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
                         <input
                             id="notimmediate"
                             type="radio"
                             name="modeFiling"
-                            value="immediate"
+                            value="not immediate"
+                            onChange={(e) =>
+                                setData("modeFiling", e.target.value)
+                            }
                         />
                         <label
                             htmlFor="notimmediate"
@@ -59,12 +66,6 @@ const StepOne = ({ formData, setFormData }) => {
                     placeholder="Date"
                     className="container-fluid w-full rounded-md border-gray-400 text-neutral-600"
                     value={currentDate}
-                    onChange={(e) =>
-                        setFormData({
-                            ...formData,
-                            currentDate: e.target.value,
-                        })
-                    }
                     disabled="disabled"
                 />
             </div>
@@ -75,11 +76,11 @@ const StepOne = ({ formData, setFormData }) => {
                     type="text"
                     placeholder="First Name"
                     className="container-fluid w-full"
-                    value={formData.firstName}
-                    onChange={(e) =>
-                        setFormData({ ...formData, firstName: e.target.value })
-                    }
+                    value={data.firstName}
+                    onChange={(e) => setData("firstName", e.target.value)}
                 />
+
+                {errors.firstName && <InputError message={errors.firstName} />}
             </div>
             {/**LAST NAME */}
             <div>
@@ -88,10 +89,8 @@ const StepOne = ({ formData, setFormData }) => {
                     type="text"
                     placeholder="Last Name"
                     className="container-fluid w-full"
-                    value={formData.lastName}
-                    onChange={(e) =>
-                        setFormData({ ...formData, lastName: e.target.value })
-                    }
+                    value={data.lastName}
+                    onChange={(e) => setData("lastName", e.target.value)}
                 />
             </div>
             {/**Date of Official Travel (FROM) */}
@@ -101,10 +100,8 @@ const StepOne = ({ formData, setFormData }) => {
                     type="date"
                     placeholder="Select date of Official Travel (FROM)"
                     className="container-fluid w-full"
-                    value={formData.dateFrom}
-                    onChange={(e) =>
-                        setFormData({ ...formData, dateFrom: e.target.value })
-                    }
+                    value={data.dateFrom}
+                    onChange={(e) => setData("dateFrom", e.target.value)}
                 />
             </div>
             {/**Date of Official Travel (TO) */}
@@ -114,10 +111,8 @@ const StepOne = ({ formData, setFormData }) => {
                     type="date"
                     placeholder="Select date of Official Travel (TO)"
                     className="container-fluid w-full"
-                    value={formData.dateTo}
-                    onChange={(e) =>
-                        setFormData({ ...formData, dateTo: e.target.value })
-                    }
+                    value={data.dateTo}
+                    onChange={(e) => setData("dateTo", e.target.value)}
                 />
             </div>
             <div>
@@ -126,10 +121,8 @@ const StepOne = ({ formData, setFormData }) => {
                     type="text"
                     placeholder="Source of Fund"
                     className="container-fluid w-full"
-                    value={formData.dateTo}
-                    onChange={(e) =>
-                        setFormData({ ...formData, dateTo: e.target.value })
-                    }
+                    value={data.sourceOfFund}
+                    onChange={(e) => setData("sourceOfFund", e.target.value)}
                 />
             </div>
         </div>
