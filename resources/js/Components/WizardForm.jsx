@@ -2,13 +2,46 @@ import React, { useState } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
+import { useForm } from "@inertiajs/react";
+
 const steps = ["Employee Information", "Travel Details", "Validation"];
 
 const WizardForm = () => {
     const [currentStep, setCurrentStep] = useState(0);
 
+    const { data, setData, post, processing, errors } = useForm("WizardForm", {
+        modeFiling: "",
+        firstName: "",
+        lastName: "",
+        dateFrom: "",
+        dateTo: "",
+        sourceOfFund: "",
+        placeDestination: "",
+    });
+
+    const validateStep = () => {
+        switch (currentStep) {
+            case 0:
+                return (
+                    data.modeFiling != "" &&
+                    data.firstName.trim() !== "" &&
+                    data.lastName.trim() !== "" &&
+                    data.modeFiling != "" &&
+                    data.dateFrom != "" &&
+                    data.dateTo != "" &&
+                    data.sourceOfFund != ""
+                );
+            case 1:
+                return data.placeDestination.trim();
+            default:
+                return false;
+        }
+    };
+
     const nextStep = () => {
-        setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+        if (validateStep()) {
+            setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+        }
     };
 
     const prevStep = () => {
@@ -17,7 +50,7 @@ const WizardForm = () => {
 
     const handleSubmit = () => {
         // Handle form submission
-        alert("Form submitted!");
+        post("/your-endpoint");
     };
 
     return (
@@ -41,19 +74,13 @@ const WizardForm = () => {
             </div>
             <div className="p-4 border">
                 {currentStep === 0 && (
-                    <div>
-                        <StepOne formData="" setFormData="" />
-                    </div>
+                    <StepOne data={data} setData={setData} errors={errors} />
                 )}
                 {currentStep === 1 && (
-                    <div>
-                        <StepTwo formData="" setFormData="" />
-                    </div>
+                    <StepTwo data={data} setData={setData} errors={errors} />
                 )}
                 {currentStep === 2 && (
-                    <div>
-                        <StepThree formData="" setFormData="" />
-                    </div>
+                    <StepThree data={data} setData={setData} errors={errors} />
                 )}
             </div>
             <div className="flex justify-between mt-4">
@@ -64,14 +91,16 @@ const WizardForm = () => {
                 >
                     Previous
                 </button>
-                {currentStep < steps.length - 1 ? (
-                    <button
-                        onClick={nextStep}
-                        className="bg-blue-600 text-white py-2 px-4 rounded"
-                    >
-                        Next
-                    </button>
-                ) : (
+                <button
+                    onClick={nextStep}
+                    className={`bg-blue-600 text-white py-2 px-4 rounded ${
+                        !validateStep() ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={!validateStep()}
+                >
+                    Next
+                </button>
+                {currentStep === steps.length - 1 && (
                     <button
                         onClick={handleSubmit}
                         className="bg-green-600 text-white py-2 px-4 rounded"
