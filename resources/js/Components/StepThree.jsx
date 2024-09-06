@@ -4,7 +4,6 @@ import TextInput from "./TextInput";
 
 const StepThree = ({ formData, setFormData }) => {
     const [imageSrc, setImageSrc] = useState(null);
-
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
