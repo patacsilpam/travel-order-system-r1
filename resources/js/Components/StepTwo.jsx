@@ -7,7 +7,7 @@ import PrimaryButton from "./PrimaryButton";
 import { CirclePlus } from "lucide-react";
 import ItineraryComponent from "./ItineraryComponent";
 
-const StepTwo = ({ formData, setFormData }) => {
+const StepTwo = ({ data, setData, post, processing, errors }) => {
     const [components, setComponents] = useState([]);
 
     const handleClick = () => {
@@ -39,12 +39,9 @@ const StepTwo = ({ formData, setFormData }) => {
                         type="text"
                         placeholder="Place of Destination"
                         className="container-fluid w-full"
-                        value={formData.placeDestination}
+                        value={data.placeDestination}
                         onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                placeDestination: e.target.value,
-                            })
+                            setData("placeDestination", e.target.value)
                         }
                     />
                 </div>
@@ -53,12 +50,9 @@ const StepTwo = ({ formData, setFormData }) => {
                     <TextInput
                         type="datetime-local"
                         className="container-fluid w-full"
-                        value={formData.departure}
+                        value={data.departure}
                         onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                departure: e.target.value,
-                            })
+                            setFormData("departure", e.target.value)
                         }
                     />
                 </div>
@@ -67,13 +61,8 @@ const StepTwo = ({ formData, setFormData }) => {
                     <TextInput
                         type="datetime-local"
                         className="container-fluid w-full"
-                        value={formData.arrival}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                arrival: e.target.value,
-                            })
-                        }
+                        value={data.arrival}
+                        onChange={(e) => setFormData("arrival", e.target.value)}
                     />
                 </div>
                 <div>
@@ -97,12 +86,9 @@ const StepTwo = ({ formData, setFormData }) => {
                         type="number"
                         className="container-fluid w-full"
                         placeholder="0.00"
-                        value={formData.allowance}
+                        value={data.allowance}
                         onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                arrival: e.target.value,
-                            })
+                            setFormData("allowance", e.target.value)
                         }
                     />
                 </div>
@@ -112,13 +98,8 @@ const StepTwo = ({ formData, setFormData }) => {
                         type="number"
                         className="container-fluid w-full"
                         placeholder="0.00"
-                        value={formData.perDiem}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                perDiem: e.target.value,
-                            })
-                        }
+                        value={data.perDiem}
+                        onChange={(e) => setFormData("perDiem", e.target.value)}
                     />
                 </div>
                 <div>
@@ -127,13 +108,8 @@ const StepTwo = ({ formData, setFormData }) => {
                         type="number"
                         className="container-fluid w-full"
                         placeholder="0.00"
-                        value={formData.others}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                arrival: e.target.value,
-                            })
-                        }
+                        value={data.others}
+                        onChange={(e) => setFormData("arrival", e.target.value)}
                     />
                 </div>
             </form>
