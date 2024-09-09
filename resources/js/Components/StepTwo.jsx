@@ -7,34 +7,21 @@ import ItineraryComponent from "./ItineraryComponent";
 import { useRemember } from "@inertiajs/react";
 
 const StepTwo = ({ data, setData, post, processing, errors }) => {
+    const createEmptyItinerary = () => ({
+        placeDestination: "",
+        departure: "",
+        arrival: "",
+        meansOfTransportation: "",
+        allowance: "",
+        perDiem: "",
+        others: "",
+    });
     const [itineraries, setItineraries] = useRemember(
-        [
-            {
-                placeDestination: "",
-                departure: "",
-                arrival: "",
-                meansOfTransportation: "",
-                allowance: "",
-                perDiem: "",
-                others: "",
-            },
-        ],
+        [createEmptyItinerary()],
         "itineraries"
     );
-
     const handleClick = () => {
-        setItineraries([
-            ...itineraries,
-            {
-                placeDestination: "",
-                departure: "",
-                arrival: "",
-                meansOfTransportation: "",
-                allowance: "",
-                perDiem: "",
-                others: "",
-            },
-        ]);
+        setItineraries([...itineraries, createEmptyItinerary()]);
     };
 
     const handleItineraryChange = (index, field, value) => {
