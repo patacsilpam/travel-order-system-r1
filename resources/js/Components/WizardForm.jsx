@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-import { useForm } from "@inertiajs/react";
+import { useForm, useRemember } from "@inertiajs/react";
 
 const steps = ["Employee Information", "Travel Details", "Validation"];
 
 const WizardForm = () => {
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useRemember(0, "currentStep");
 
     const { data, setData, post, processing, errors } = useForm("WizardForm", {
         modeFiling: "",
@@ -23,12 +23,12 @@ const WizardForm = () => {
         switch (currentStep) {
             case 0:
                 return (
-                    data.modeFiling != "" &&
-                    data.firstName.trim() !== "" &&
-                    data.lastName.trim() !== "" &&
-                    data.dateFrom != "" &&
-                    data.dateTo != "" &&
-                    data.sourceOfFund != ""
+                    data.modeFiling &&
+                    data.firstName.trim() &&
+                    data.lastName.trim() &&
+                    data.dateFrom &&
+                    data.dateTo &&
+                    data.sourceOfFund
                 );
             case 1:
                 return (
@@ -101,7 +101,7 @@ const WizardForm = () => {
                 >
                     Previous
                 </button>
-                {currentStep !== 2 && (
+                {currentStep < steps.length - 1 && (
                     <button
                         onClick={nextStep}
                         className={`bg-blue-600 text-white py-2 px-4 rounded ${
@@ -114,6 +114,20 @@ const WizardForm = () => {
                         Next
                     </button>
                 )}
+
+                {/*currentStep !== 2 && (
+                    <button
+                        onClick={nextStep}
+                        className={`bg-blue-600 text-white py-2 px-4 rounded ${
+                            !validateStep()
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                        }`}
+                        disabled={!validateStep()}
+                    >
+                        Next
+                    </button>
+                )*/}
                 {currentStep === steps.length - 1 && (
                     <button
                         onClick={handleSubmit}
