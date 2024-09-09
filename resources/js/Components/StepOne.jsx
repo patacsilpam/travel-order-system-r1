@@ -28,6 +28,7 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
                             type="radio"
                             name="modeFiling"
                             value="immediate"
+                            checked={data.modeFiling === "immediate"}
                             onChange={(e) =>
                                 setData("modeFiling", e.target.value)
                             }
@@ -45,6 +46,7 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
                             type="radio"
                             name="modeFiling"
                             value="not immediate"
+                            checked={data.modeFiling === "not immediate"}
                             onChange={(e) =>
                                 setData("modeFiling", e.target.value)
                             }
