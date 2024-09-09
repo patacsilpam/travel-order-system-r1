@@ -16,7 +16,7 @@ const WizardForm = () => {
         dateFrom: "",
         dateTo: "",
         sourceOfFund: "",
-        placeDestination: "",
+        itineraries: [], // Add itineraries to the form data
     });
 
     const validateStep = () => {
@@ -26,13 +26,23 @@ const WizardForm = () => {
                     data.modeFiling != "" &&
                     data.firstName.trim() !== "" &&
                     data.lastName.trim() !== "" &&
-                    data.modeFiling != "" &&
                     data.dateFrom != "" &&
                     data.dateTo != "" &&
                     data.sourceOfFund != ""
                 );
             case 1:
-                return data.placeDestination.trim();
+                return (
+                    data.itineraries.length > 0 &&
+                    data.itineraries.every(
+                        (itinerary) =>
+                            itinerary.placeDestination.trim() !== "" &&
+                            itinerary.departure.trim() !== "" &&
+                            itinerary.arrival.trim() !== "" &&
+                            itinerary.meansOfTransportation.trim() !== "" &&
+                            itinerary.allowance.trim() !== "" &&
+                            itinerary.perDiem.trim() !== ""
+                    )
+                );
             default:
                 return false;
         }
@@ -91,21 +101,25 @@ const WizardForm = () => {
                 >
                     Previous
                 </button>
-                <button
-                    onClick={nextStep}
-                    className={`bg-blue-600 text-white py-2 px-4 rounded ${
-                        !validateStep() ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                    disabled={!validateStep()}
-                >
-                    Next
-                </button>
+                {currentStep !== 2 && (
+                    <button
+                        onClick={nextStep}
+                        className={`bg-blue-600 text-white py-2 px-4 rounded ${
+                            !validateStep()
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                        }`}
+                        disabled={!validateStep()}
+                    >
+                        Next
+                    </button>
+                )}
                 {currentStep === steps.length - 1 && (
                     <button
                         onClick={handleSubmit}
                         className="bg-green-600 text-white py-2 px-4 rounded"
                     >
-                        Submit
+                        Submit {console.log(currentStep)}
                     </button>
                 )}
             </div>
