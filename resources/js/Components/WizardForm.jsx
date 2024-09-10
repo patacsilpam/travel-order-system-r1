@@ -11,6 +11,7 @@ const WizardForm = () => {
 
     const { data, setData, post, processing, errors } = useForm("WizardForm", {
         modeFiling: "",
+        evidence: "",
         firstName: "",
         lastName: "",
         dateFrom: "",
@@ -18,17 +19,19 @@ const WizardForm = () => {
         sourceOfFund: "",
         itineraries: [], // Add itineraries to the form data
     });
-
+    console.log(data.evidence.file);
     const validateStep = () => {
         switch (currentStep) {
             case 0:
                 return (
-                    data.modeFiling &&
-                    data.firstName.trim() &&
-                    data.lastName.trim() &&
-                    data.dateFrom &&
-                    data.dateTo &&
-                    data.sourceOfFund
+                    (data.modeFiling &&
+                        data.firstName.trim() &&
+                        data.lastName.trim() &&
+                        data.dateFrom &&
+                        data.dateTo &&
+                        data.sourceOfFund &&
+                        data.evidence) ||
+                    data.modeFiling === "not immediate"
                 );
             case 1:
                 return (
@@ -43,7 +46,6 @@ const WizardForm = () => {
                             itinerary.perDiem.trim() !== ""
                     )
                 );
-            default:
                 return false;
         }
     };
@@ -115,19 +117,6 @@ const WizardForm = () => {
                     </button>
                 )}
 
-                {/*currentStep !== 2 && (
-                    <button
-                        onClick={nextStep}
-                        className={`bg-blue-600 text-white py-2 px-4 rounded ${
-                            !validateStep()
-                                ? "opacity-50 cursor-not-allowed"
-                                : ""
-                        }`}
-                        disabled={!validateStep()}
-                    >
-                        Next
-                    </button>
-                )*/}
                 {currentStep === steps.length - 1 && (
                     <button
                         onClick={handleSubmit}
