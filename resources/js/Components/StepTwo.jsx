@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import InputLabel from "./InputLabel";
-import TextInput from "./TextInput";
 import PrimaryButton from "./PrimaryButton";
 import { CirclePlus } from "lucide-react";
 import ItineraryComponent from "./ItineraryComponent";
@@ -17,8 +15,8 @@ const StepTwo = ({ data, setData, post, processing, errors }) => {
         others: "",
     });
     const [itineraries, setItineraries] = useRemember(
-        [createEmptyItinerary()],
-        "itineraries"
+        [createEmptyItinerary()]
+        //"itineraries"
     );
     const handleClick = () => {
         setItineraries([...itineraries, createEmptyItinerary()]);
@@ -51,6 +49,7 @@ const StepTwo = ({ data, setData, post, processing, errors }) => {
                             index={index}
                             data={itinerary}
                             onChange={handleItineraryChange}
+                            modeFiling={data.modeFiling}
                         />
                     ))}
                 </div>

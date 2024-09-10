@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
 import InputError from "./InputError";
+import { minDate, defaultDate } from "@/utils/dateUtils";
 const StepOne = ({ data, setData, post, processing, errors }) => {
     const [currentDate, setCurrentDate] = useState("");
 
@@ -20,7 +21,10 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
         <div className="space-y-6 ">
             {/**MODE OF FILING */}
             <div className="space-x-4">
-                <InputLabel value="Mode of Filing" className="mb-3" />
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Mode of Filing" className="" />{" "}
+                    <small className="mb-3 text-red-600">*</small>
+                </div>
                 <div className="flex md:flex-row flex-col ">
                     <div className="flex items-center border -1 mx-2 md:my-0 my-1 border-neutral-300 p-2 rounded-sm hover:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
                         <input
@@ -60,9 +64,24 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
                     </div>
                 </div>
             </div>
+            {/**Conditional Statement, if the mode of filing is immediate */}
+            {data.modeFiling === "immediate" && (
+                <div>
+                    <div className="flex flex-row gap-1">
+                        <InputLabel value="Proof of Evidence" />
+                        <small className="text-red-600"> *</small>
+                    </div>
+                    <input
+                        type="file"
+                        required
+                        className="container-fluid w-full border border-neutral-700 rounded-md"
+                        onChange={(e) => setData("evidence", e.target.files[0])}
+                    />
+                </div>
+            )}
             {/**DATE OF FILING */}
             <div>
-                <InputLabel value="Date of Filing (MM-DD-YYYY)" />
+                <InputLabel value="Date of Filing (MM-DD-YYYY)" />{" "}
                 <input
                     type="text"
                     placeholder="Date"
@@ -73,7 +92,10 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
             </div>
             {/**FIRST NAME */}
             <div>
-                <InputLabel value="First Name" />
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="First Name" />
+                    <small className="text-red-600"> *</small>
+                </div>
                 <TextInput
                     type="text"
                     placeholder="First Name"
@@ -86,7 +108,10 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
             </div>
             {/**LAST NAME */}
             <div>
-                <InputLabel value="Last Name" />
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Last Name" />
+                    <small className="text-red-600"> *</small>
+                </div>
                 <TextInput
                     type="text"
                     placeholder="Last Name"
@@ -97,28 +122,47 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
             </div>
             {/**Date of Official Travel (FROM) */}
             <div>
-                <InputLabel value="Date of Official Travel (FROM)" />
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Date of Official Travel (FROM)" />
+                    <small className="text-red-600"> *</small>
+                </div>
                 <TextInput
                     type="date"
                     placeholder="Select date of Official Travel (FROM)"
                     className="container-fluid w-full"
                     value={data.dateFrom}
+                    min={
+                        data.modeFiling === "immediate"
+                            ? minDate()
+                            : defaultDate()
+                    }
                     onChange={(e) => setData("dateFrom", e.target.value)}
                 />
             </div>
             {/**Date of Official Travel (TO) */}
             <div>
-                <InputLabel value="Date of Official Travel (TO)" />
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Date of Official Travel (TO)" />
+                    <small className="text-red-600"> *</small>
+                </div>
                 <TextInput
                     type="date"
                     placeholder="Select date of Official Travel (TO)"
                     className="container-fluid w-full"
+                    min={
+                        data.modeFiling === "immediate"
+                            ? minDate()
+                            : defaultDate()
+                    }
                     value={data.dateTo}
                     onChange={(e) => setData("dateTo", e.target.value)}
                 />
             </div>
             <div>
-                <InputLabel value="Source of Fund" />
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Source of Fund" />
+                    <small className="text-red-600"> *</small>
+                </div>
                 <TextInput
                     type="text"
                     placeholder="Source of Fund"
