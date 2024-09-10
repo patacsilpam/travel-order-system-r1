@@ -7,6 +7,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\FundsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,6 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/positions/{id}/edit', [PositionController::class, 'editPosition'])->name('positions.edit');
     Route::put('/positions/{id}/edit', [PositionController::class, 'edit'])->name('positions.edit');
     Route::delete('/positions/{id}/delete', [PositionController::class, 'destroy'])->name('positions.delete');
+});
+
+//funds
+Route::middleware('auth')->group(function () {
+    Route::get('/funds', [FundsController::class,'index'])->name('funds.show');
 });
 
 //users
