@@ -7,6 +7,7 @@ import {
     Compass,
     Split,
     User,
+    HandCoins,
     Settings,
     Building2,
 } from "lucide-react";
@@ -86,6 +87,14 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     <User />
                                     Users
+                                </NavLink>
+                                <NavLink
+                                    href={route("funds.show")}
+                                    active={route().current("funds.show")}
+                                    className="gap-2"
+                                >
+                                    <HandCoins />
+                                    Funds
                                 </NavLink>
                                 <NavLink
                                     href={route("settings.show")}
