@@ -1,11 +1,13 @@
 import React from "react";
 import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
+import { minDateLocal, defaultDateLocal } from "@/utils/dateUtils";
 import { useRemember } from "@inertiajs/react";
-const ItineraryComponent = ({ index, data, onChange }) => {
+const ItineraryComponent = ({ index, data, onChange, modeFiling }) => {
+    console.log(modeFiling);
     return (
         <div>
-            <div className="mb-4 flex flex-col justify-center lg:flex-row md:flex-col lg:space-y-0 lg:space-x-5 md:space-y-2">
+            <div className="mb-4 flex flex-col justify-center lg:flex-row md:flex-col lg:space-y-0 lg:space-x-5 space-y-4">
                 <div>
                     <InputLabel value="Place of Destination" />
                     <TextInput
@@ -23,6 +25,11 @@ const ItineraryComponent = ({ index, data, onChange }) => {
                     <TextInput
                         type="datetime-local"
                         className="container-fluid w-full"
+                        min={
+                            modeFiling === "immediate"
+                                ? minDateLocal()
+                                : defaultDateLocal()
+                        }
                         value={data.departure}
                         onChange={(e) =>
                             onChange(index, "departure", e.target.value)
@@ -34,6 +41,11 @@ const ItineraryComponent = ({ index, data, onChange }) => {
                     <TextInput
                         type="datetime-local"
                         className="container-fluid w-full"
+                        min={
+                            modeFiling === "immediate"
+                                ? minDateLocal()
+                                : defaultDateLocal()
+                        }
                         value={data.arrival}
                         onChange={(e) =>
                             onChange(index, "arrival", e.target.value)
