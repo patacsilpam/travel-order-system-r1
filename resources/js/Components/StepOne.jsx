@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
 import InputError from "./InputError";
+import SelectDropdown from "./SelectDropdown";
 import { minDate, defaultDate } from "@/utils/dateUtils";
-const StepOne = ({ data, setData, post, processing, errors }) => {
+import MultiSelectDropdown from "./MultiSelectDropdown";
+const StepOne = ({ data, setData, post, processing, errors, funds, users }) => {
     const [currentDate, setCurrentDate] = useState("");
-
     useEffect(() => {
         const date = new Date();
         // Extract the month, day, and year
@@ -17,6 +18,15 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
         const formattedDate = `${month}-${day}-${year}`;
         setCurrentDate(formattedDate);
     }, []);
+
+    const fundOptions = funds.map((item) => ({
+        value: item.funds,
+        label: item.funds,
+    }));
+    const userOptions = users.map((item) => ({
+        value: `${item.first_name} ${item.last_name}`,
+        label: `${item.first_name} ${item.last_name}`,
+    }));
     return (
         <div className="space-y-6 ">
             {/**MODE OF FILING */}
@@ -120,6 +130,17 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
                     onChange={(e) => setData("lastName", e.target.value)}
                 />
             </div>
+            <div>
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Employees" />
+                    <small className="text-red-600"> *</small>
+                </div>
+                <MultiSelectDropdown
+                    options={userOptions}
+                    onChange={(selected) => setData("employees", selected)}
+                />
+            </div>
+
             {/**Date of Official Travel (FROM) */}
             <div>
                 <div className="flex flex-row gap-1">
@@ -163,9 +184,8 @@ const StepOne = ({ data, setData, post, processing, errors }) => {
                     <InputLabel value="Source of Fund" />
                     <small className="text-red-600"> *</small>
                 </div>
-                <TextInput
-                    type="text"
-                    placeholder="Source of Fund"
+                <SelectDropdown
+                    options={fundOptions}
                     className="container-fluid w-full"
                     value={data.sourceOfFund}
                     onChange={(e) => setData("sourceOfFund", e.target.value)}
