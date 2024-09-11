@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funds;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,8 @@ class TravelRequestController extends Controller
         return Inertia::render('TravelRequest/Show');
     }
     public function create()
-    {
-        return Inertia::render('TravelRequest/Create');
+    {   $funds = Funds::orderBy('funds','asc')->get();
+        $users = User::orderBy('first_name','asc')->get();
+        return Inertia::render('TravelRequest/Create',['funds' => $funds,'users' => $users]);
     }
 }
