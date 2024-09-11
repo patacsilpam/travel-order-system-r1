@@ -2,7 +2,7 @@ import WizardForm from "@/Components/WizardForm";
 import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-const Create = ({ auth }) => {
+const Create = ({ auth, funds, users }) => {
     return (
         <div>
             <AuthenticatedLayout
@@ -12,7 +12,7 @@ const Create = ({ auth }) => {
                 }
             >
                 <Head title="Create Travel Request" />
-                <WizardForm />
+                <WizardForm funds={funds} users={users} />
             </AuthenticatedLayout>
         </div>
     );
