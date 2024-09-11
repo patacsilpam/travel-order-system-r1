@@ -6,20 +6,20 @@ import { useForm, useRemember } from "@inertiajs/react";
 
 const steps = ["Employee Information", "Travel Details", "Validation"];
 
-const WizardForm = () => {
+const WizardForm = ({ funds, users }) => {
     const [currentStep, setCurrentStep] = useRemember(0, "currentStep");
-
     const { data, setData, post, processing, errors } = useForm("WizardForm", {
         modeFiling: "",
         evidence: "",
         firstName: "",
         lastName: "",
+        employees: "",
         dateFrom: "",
         dateTo: "",
         sourceOfFund: "",
         itineraries: [], // Add itineraries to the form data
     });
-    console.log(data.evidence.file);
+    console.log(data.employees);
     const validateStep = () => {
         switch (currentStep) {
             case 0:
@@ -86,7 +86,13 @@ const WizardForm = () => {
             </div>
             <div className="p-4 border">
                 {currentStep === 0 && (
-                    <StepOne data={data} setData={setData} errors={errors} />
+                    <StepOne
+                        data={data}
+                        setData={setData}
+                        errors={errors}
+                        funds={funds}
+                        users={users}
+                    />
                 )}
                 {currentStep === 1 && (
                     <StepTwo data={data} setData={setData} errors={errors} />
@@ -122,7 +128,7 @@ const WizardForm = () => {
                         onClick={handleSubmit}
                         className="bg-green-600 text-white py-2 px-4 rounded"
                     >
-                        Submit {console.log(currentStep)}
+                        Submit
                     </button>
                 )}
             </div>
