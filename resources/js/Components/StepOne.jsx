@@ -100,36 +100,6 @@ const StepOne = ({ data, setData, post, processing, errors, funds, users }) => {
                     disabled="disabled"
                 />
             </div>
-            {/**FIRST NAME */}
-            <div>
-                <div className="flex flex-row gap-1">
-                    <InputLabel value="First Name" />
-                    <small className="text-red-600"> *</small>
-                </div>
-                <TextInput
-                    type="text"
-                    placeholder="First Name"
-                    className="container-fluid w-full"
-                    value={data.firstName}
-                    onChange={(e) => setData("firstName", e.target.value)}
-                />
-
-                {errors.firstName && <InputError message={errors.firstName} />}
-            </div>
-            {/**LAST NAME */}
-            <div>
-                <div className="flex flex-row gap-1">
-                    <InputLabel value="Last Name" />
-                    <small className="text-red-600"> *</small>
-                </div>
-                <TextInput
-                    type="text"
-                    placeholder="Last Name"
-                    className="container-fluid w-full"
-                    value={data.lastName}
-                    onChange={(e) => setData("lastName", e.target.value)}
-                />
-            </div>
             <div>
                 <div className="flex flex-row gap-1">
                     <InputLabel value="Employees" />
@@ -179,6 +149,21 @@ const StepOne = ({ data, setData, post, processing, errors, funds, users }) => {
                     onChange={(e) => setData("dateTo", e.target.value)}
                 />
             </div>
+            {/**Purpose of travel*/}
+            <div>
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Purpose of Travel" />
+                    <small className="text-red-600"> *</small>
+                </div>
+                <TextInput
+                    type="text"
+                    placeholder="Enter Purpose of Travel"
+                    className="container-fluid w-full"
+                    value={data.travelPurpose}
+                    onChange={(e) => setData("travelPurpose", e.target.value)}
+                />
+            </div>
+            {/**Source of Funds*/}
             <div>
                 <div className="flex flex-row gap-1">
                     <InputLabel value="Source of Fund" />
