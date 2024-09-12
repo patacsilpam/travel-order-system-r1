@@ -46,7 +46,20 @@ const MultiSelectDropdown = forwardRef(function MultiSelectDropdown(
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                <span className="text-md">Select</span>
+                <span className="text-md">
+                    {selectedOptions >= 0
+                        ? "Select"
+                        : selectedOptions.map((item) => (
+                              <span className="bg-indigo-600 text-white mr-2 px-2 p-1 rounded-full">
+                                  {" "}
+                                  {item}{" "}
+                              </span>
+                          ))}
+                    {/*selectedOptions.length > 0
+                        ? `(${selectedOptions.length})`
+                        : ""*/}
+                </span>
+
                 <ChevronDown />
             </button>
             {isOpen && (
