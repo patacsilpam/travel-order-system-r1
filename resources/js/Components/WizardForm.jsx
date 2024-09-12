@@ -11,11 +11,10 @@ const WizardForm = ({ funds, users }) => {
     const { data, setData, post, processing, errors } = useForm("WizardForm", {
         modeFiling: "",
         evidence: "",
-        firstName: "",
-        lastName: "",
         employees: "",
         dateFrom: "",
         dateTo: "",
+        travelPurpose: "",
         sourceOfFund: "",
         itineraries: [], // Add itineraries to the form data
     });
@@ -25,8 +24,7 @@ const WizardForm = ({ funds, users }) => {
             case 0:
                 return (
                     (data.modeFiling &&
-                        data.firstName.trim() &&
-                        data.lastName.trim() &&
+                        data.employees &&
                         data.dateFrom &&
                         data.dateTo &&
                         data.sourceOfFund &&
