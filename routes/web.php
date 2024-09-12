@@ -52,6 +52,9 @@ Route::middleware('auth')->group(function () {
 //funds
 Route::middleware('auth')->group(function () {
     Route::get('/funds', [FundsController::class,'index'])->name('funds.show');
+    Route::post('/funds', [FundsController::class,'create'])->name('funds.create');
+    Route::put('/funds/edit/{id}', [FundsController::class,'edit'])->name('funds.edit');
+    Route::delete('funds/delete/{id}',[FundsController::class,'destroy'])->name('funds.delete');
 });
 
 //users
