@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/travel-request', [TravelRequestController::class, 'show'])->name('travel-request.show');
     Route::get('/travel-request/create', [TravelRequestController::class, 'create'])->name('travel-request.create');
+    Route::post('/travel-request/create', [TravelRequestController::class, 'calculateDistance']);
 });
 
 //travel order
