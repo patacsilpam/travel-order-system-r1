@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
 import InputError from "./InputError";
@@ -27,8 +28,14 @@ const StepOne = ({ data, setData, post, processing, errors, funds, users }) => {
         value: `${item.first_name} ${item.last_name}`,
         label: `${item.first_name} ${item.last_name}`,
     }));
+
+    const [distance, setDistance] = useState(null);
+    const [origin, setOrigin] = useState("");
+    const [destination, setDestination] = useState("");
+
     return (
         <div className="space-y-6 ">
+            <button>Calculate Distance {distance}</button>
             {/**MODE OF FILING */}
             <div className="space-x-4">
                 <div className="flex flex-row gap-1">
@@ -111,7 +118,7 @@ const StepOne = ({ data, setData, post, processing, errors, funds, users }) => {
                 />
             </div>
 
-            {/**Date of Official Travel (FROM) */}
+            {/**Date of Official Travel (FROM)*/}
             <div>
                 <div className="flex flex-row gap-1">
                     <InputLabel value="Date of Official Travel (FROM)" />
@@ -147,6 +154,32 @@ const StepOne = ({ data, setData, post, processing, errors, funds, users }) => {
                     }
                     value={data.dateTo}
                     onChange={(e) => setData("dateTo", e.target.value)}
+                />
+            </div>
+            {/**Origin */}
+            <div>
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Origin" />
+                    <small className="text-red-600"> *</small>
+                </div>
+                <TextInput
+                    type="text"
+                    placeholder="Origin"
+                    className="container-fluid w-full"
+                    onChange={(e) => setOrigin(e.target.value)}
+                />
+            </div>
+            {/**Place of Destination */}
+            <div>
+                <div className="flex flex-row gap-1">
+                    <InputLabel value="Place of Destination" />
+                    <small className="text-red-600"> *</small>
+                </div>
+                <TextInput
+                    type="text"
+                    placeholder="Place of Destination"
+                    className="container-fluid w-full"
+                    onChange={(e) => setDestination(e.target.value)}
                 />
             </div>
             {/**Purpose of travel*/}
